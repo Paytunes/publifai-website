@@ -1,1252 +1,519 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kam+AI — The Operating System for India's Small Businesses</title>
-  <meta name="description"
-    content="Every small business operation that requires a separate app can instead be a conversation. Kam+AI is a multi-agent platform delivered through chat.">
-  <meta name="robots" content="noindex, nofollow">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-    rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
-          colors: {
-            surface: '#0a0a0f',
-            card: 'rgba(255,255,255,0.03)',
-          }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kam.ai — The Operating System for India's Small Businesses</title>
+    <meta name="description" content="Every small business operation that requires a separate app can be a conversation. Kam.ai builds AI agents for India's 63 million SMBs — starting with websites, delivered through WhatsApp.">
+    <meta property="og:title" content="Kam.ai — The Operating System for India's Small Businesses">
+    <meta property="og:description" content="Chat on WhatsApp. Get a bilingual website. Show up on Google. Built for India's 63M small businesses.">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['DM Sans', 'sans-serif'] },
+                    colors: {
+                        brand: { DEFAULT: '#1a6b4a', light: '#2d9d6a', dark: '#155e3f' },
+                        whatsapp: { DEFAULT: '#25D366', hover: '#1fb855' },
+                    }
+                }
+            }
         }
-      }
-    }
-  </script>
-  <style>
-    body { background: #0a0a0f; }
-    .tab-active { color: #e2e8f0; font-weight: 700; border-bottom: 2px solid #8b5cf6; }
-    .tab-inactive { color: #6b7280; font-weight: 500; border-bottom: 2px solid transparent; }
-    .tab-inactive:hover { color: #9ca3af; }
-    .section-hidden { display: none; }
-    .section-visible { display: block; }
-    /* Scrollbar for tabs */
-    .tabs-scroll::-webkit-scrollbar { height: 0; }
-  </style>
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        .gradient-text {
+            background: linear-gradient(135deg, #1a6b4a 0%, #25D366 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .chat-bubble {
+            position: relative;
+            background: #DCF8C6;
+            border-radius: 12px 12px 12px 0;
+            padding: 12px 16px;
+            font-size: 14px;
+            color: #1C1917;
+            max-width: 280px;
+        }
+        .chat-bubble-reply {
+            background: #fff;
+            border: 1px solid #E5E7EB;
+            border-radius: 12px 12px 0 12px;
+            margin-left: auto;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
+<body class="font-sans bg-white text-gray-900 antialiased">
 
-<body class="min-h-screen text-slate-200 font-sans antialiased">
-
-  <!-- Nav bar -->
-  <nav class="border-b border-white/5 px-6 py-3 flex items-center justify-between text-xs text-slate-500">
-    <a href="/" class="hover:text-slate-300 transition">&larr; shashanksingla.com</a>
-    <div class="flex gap-4">
-      <a href="/log/hcode.html" class="hover:text-slate-300 transition">HCode</a>
-      <a href="/log/paytunes.html" class="hover:text-slate-300 transition">PayTunes</a>
-      <a href="/log/dextro.html" class="hover:text-slate-300 transition">Dextro</a>
-    </div>
-  </nav>
-
-  <!-- Header -->
-  <header class="px-6 md:px-10 pt-8 pb-0 border-b border-white/5">
-    <div class="max-w-4xl mx-auto">
-      <div class="flex items-center gap-3 mb-2">
-        <div
-          class="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-cyan-500 flex items-center justify-center font-black text-white text-base">
-          K</div>
-        <div>
-          <h1 class="text-xl md:text-2xl font-extrabold tracking-tight m-0">Kam<span
-              class="text-violet-500">+</span>AI</h1>
-          <p class="text-[11px] text-gray-500 uppercase tracking-widest m-0">Product Design Document</p>
+    <!-- Nav -->
+    <nav class="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-sm border-b border-gray-100 z-50">
+        <div class="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
+            <a href="/" class="text-xl font-bold text-brand">Kam<span class="text-brand-light">.ai</span></a>
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
+                <a href="#problem" class="hover:text-brand transition-colors">The Problem</a>
+                <a href="#product" class="hover:text-brand transition-colors">Product</a>
+                <a href="#how-it-works" class="hover:text-brand transition-colors">How It Works</a>
+                <a href="#team" class="hover:text-brand transition-colors">Team</a>
+            </div>
+            <a href="pilot.html" class="bg-whatsapp hover:bg-whatsapp-hover text-white font-semibold text-sm px-5 py-2.5 rounded-lg transition-colors">
+                Join the Pilot
+            </a>
         </div>
-      </div>
+    </nav>
 
-      <!-- Tabs -->
-      <div class="flex gap-1 mt-5 overflow-x-auto tabs-scroll" id="tabs">
-        <button onclick="showSection('vision')" data-tab="vision"
-          class="tab-active px-3.5 py-2.5 text-xs whitespace-nowrap bg-transparent border-0 cursor-pointer font-sans transition-all">
-          ◉ Vision</button>
-        <button onclick="showSection('gtm')" data-tab="gtm"
-          class="tab-inactive px-3.5 py-2.5 text-xs whitespace-nowrap bg-transparent border-0 cursor-pointer font-sans transition-all">
-          ▲ GTM</button>
-        <button onclick="showSection('architecture')" data-tab="architecture"
-          class="tab-inactive px-3.5 py-2.5 text-xs whitespace-nowrap bg-transparent border-0 cursor-pointer font-sans transition-all">
-          ⬡ Architecture</button>
-        <button onclick="showSection('flows')" data-tab="flows"
-          class="tab-inactive px-3.5 py-2.5 text-xs whitespace-nowrap bg-transparent border-0 cursor-pointer font-sans transition-all">
-          ↯ User Flows</button>
-        <button onclick="showSection('hil')" data-tab="hil"
-          class="tab-inactive px-3.5 py-2.5 text-xs whitespace-nowrap bg-transparent border-0 cursor-pointer font-sans transition-all">
-          ⟐ Human-in-Loop</button>
-        <button onclick="showSection('payments')" data-tab="payments"
-          class="tab-inactive px-3.5 py-2.5 text-xs whitespace-nowrap bg-transparent border-0 cursor-pointer font-sans transition-all">
-          ₹ Payments</button>
-        <button onclick="showSection('expansion')" data-tab="expansion"
-          class="tab-inactive px-3.5 py-2.5 text-xs whitespace-nowrap bg-transparent border-0 cursor-pointer font-sans transition-all">
-          ∞ Expansion</button>
-        <button onclick="showSection('pilot')" data-tab="pilot"
-          class="tab-inactive px-3.5 py-2.5 text-xs whitespace-nowrap bg-transparent border-0 cursor-pointer font-sans transition-all">
-          ▸ Pilot Plan</button>
-        <button onclick="showSection('playbook')" data-tab="playbook"
-          class="tab-inactive px-3.5 py-2.5 text-xs whitespace-nowrap bg-transparent border-0 cursor-pointer font-sans transition-all">
-          ⚡ Playbook</button>
-      </div>
-    </div>
-  </header>
-
-  <!-- Content -->
-  <main class="px-6 md:px-10 py-8 pb-16">
-    <div class="max-w-4xl mx-auto">
-
-      <!-- VISION -->
-      <section id="sec-vision" class="section-visible">
-        <div class="rounded-xl p-6 mb-5 border border-violet-500/20"
-          style="background: linear-gradient(135deg, rgba(139,92,246,0.1), rgba(6,182,212,0.08))">
-          <p class="text-lg leading-relaxed italic text-slate-200 m-0">
-            "The operating system for India's small businesses, delivered through a chat."
-          </p>
-        </div>
-
-        <div class="text-slate-400 text-sm leading-relaxed mb-6 space-y-3">
-          <p>India has ~63 million small businesses. The chai stall owner, the neighborhood tutor, the freelance
-            photographer, the Ayurvedic clinic, the local electrician. They all share the same problems: they need
-            customers, they need to look professional, they need to get paid, they need to manage their time &mdash; and
-            they have zero appetite for learning software.</p>
-          <p>What they do have is a phone with WhatsApp or Telegram open 14 hours a day. That's their CRM, their
-            marketing channel, their invoicing system, their calendar. All duct-taped together with screenshots and voice
-            notes.</p>
-          <p><strong class="text-slate-200">Kam+AI is the thesis that every small business operation that currently
-              requires a separate app, a separate login, a separate learning curve &mdash; can instead be a
-              conversation.</strong></p>
-        </div>
-
-        <!-- Problem Map -->
-        <h3 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-4">The Problem Map</h3>
-        <div class="grid md:grid-cols-2 gap-3 mb-6">
-          <div class="rounded-xl p-4 border border-white/5 bg-white/[0.02]">
-            <h4 class="text-violet-400 text-xs font-bold uppercase tracking-wide mb-2">Getting Found Online</h4>
-            <p class="text-slate-500 text-xs leading-relaxed m-0">Most have no website. Maybe a Google Maps listing a
-              cousin set up two years ago with the wrong phone number. The "solution" today is a ₹30K agency or a
-              WordPress site they'll never update.</p>
-          </div>
-          <div class="rounded-xl p-4 border border-white/5 bg-white/[0.02]">
-            <h4 class="text-violet-400 text-xs font-bold uppercase tracking-wide mb-2">Looking Professional</h4>
-            <p class="text-slate-500 text-xs leading-relaxed m-0">No logo, no consistent branding, no digital business
-              card. They share a blurry photo on WhatsApp as their "catalog." First impressions are lost before they
-              begin.</p>
-          </div>
-          <div class="rounded-xl p-4 border border-white/5 bg-white/[0.02]">
-            <h4 class="text-violet-400 text-xs font-bold uppercase tracking-wide mb-2">Getting Paid</h4>
-            <p class="text-slate-500 text-xs leading-relaxed m-0">Invoicing is a WhatsApp message saying "bhaiya ₹2500
-              bhej do." No receipts, no tracking, no automated reminders. GST compliance is a nightmare handled by a CA
-              they visit once a quarter.</p>
-          </div>
-          <div class="rounded-xl p-4 border border-white/5 bg-white/[0.02]">
-            <h4 class="text-violet-400 text-xs font-bold uppercase tracking-wide mb-2">Managing Time</h4>
-            <p class="text-slate-500 text-xs leading-relaxed m-0">A notebook or their memory. Double bookings happen.
-              No-shows have no consequence because there's no system. Doctors, tutors, and salons lose hours every week.
+    <!-- Hero -->
+    <section class="pt-32 pb-16 md:pt-40 md:pb-24 px-5">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="inline-block bg-green-50 text-brand text-xs font-semibold tracking-wide uppercase px-4 py-1.5 rounded-full mb-6">
+                Building for India's 63M Small Businesses
+            </div>
+            <h1 class="text-4xl md:text-5xl lg:text-[56px] font-bold leading-tight mb-6 text-gray-900">
+                Every small business operation<br class="hidden md:block"> can be a <span class="gradient-text">conversation.</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-500 max-w-2xl mx-auto mb-10 leading-relaxed">
+                Kam.ai is the operating system for India's small businesses — delivered through WhatsApp. No apps to learn. No dashboards to navigate. Just chat.
             </p>
-          </div>
-          <div class="rounded-xl p-4 border border-white/5 bg-white/[0.02]">
-            <h4 class="text-violet-400 text-xs font-bold uppercase tracking-wide mb-2">Marketing</h4>
-            <p class="text-slate-500 text-xs leading-relaxed m-0">They know they should "post on Instagram" but have no
-              idea what to post, when, or how. They pay ₹500 to some local guy who runs the same generic template for
-              every shop.</p>
-          </div>
-          <div class="rounded-xl p-4 border border-white/5 bg-white/[0.02]">
-            <h4 class="text-violet-400 text-xs font-bold uppercase tracking-wide mb-2">Customer Relationships</h4>
-            <p class="text-slate-500 text-xs leading-relaxed m-0">They remember regulars by face. No record of who
-              bought what, who hasn't visited in 3 months, who referred a friend. Every customer insight lives in their
-              head.</p>
-          </div>
+            <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                <a href="pilot.html" class="bg-whatsapp hover:bg-whatsapp-hover text-white font-semibold text-base px-8 py-3.5 rounded-xl transition-colors inline-flex items-center justify-center gap-2">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    Join the Pilot
+                </a>
+                <a href="#problem" class="border border-gray-200 hover:border-brand text-gray-700 hover:text-brand font-semibold text-base px-8 py-3.5 rounded-xl transition-colors inline-flex items-center justify-center">
+                    Learn More
+                </a>
+            </div>
         </div>
+    </section>
 
-        <!-- Thesis cards -->
-        <h3 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-4">The Thesis</h3>
-        <div class="grid md:grid-cols-2 gap-3 mb-6">
-          <div class="rounded-xl p-4 border border-white/5 bg-white/[0.02]">
-            <h4 class="text-violet-400 text-xs font-bold uppercase tracking-wide mb-2">The Insight</h4>
-            <p class="text-slate-500 text-xs leading-relaxed m-0">Small business owners don't want to "build websites"
-              or "learn CRMs". They want customers. A conversational agent that handles everything &mdash; from setup to
-              updates to payments &mdash; in the messaging app they already live in.</p>
-          </div>
-          <div class="rounded-xl p-4 border border-white/5 bg-white/[0.02]">
-            <h4 class="text-violet-400 text-xs font-bold uppercase tracking-wide mb-2">Agent Architecture</h4>
-            <p class="text-slate-500 text-xs leading-relaxed m-0">Each problem is an agent. Each agent is
-              conversational, contextual, and backed by AI + human expertise. "Mera website update karo" &rarr; Website
-              Agent. "Kal ka invoice bhejo" &rarr; Billing Agent. Same chat, one relationship that compounds over time.
+    <!-- Stats Bar -->
+    <section class="border-y border-gray-100 bg-gray-50/50 py-10 px-5">
+        <div class="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div>
+                <div class="text-3xl md:text-4xl font-bold text-brand">63M+</div>
+                <div class="text-sm text-gray-500 mt-1">Small businesses in India</div>
+            </div>
+            <div>
+                <div class="text-3xl md:text-4xl font-bold text-brand">~1.6%</div>
+                <div class="text-sm text-gray-500 mt-1">Have a functioning website</div>
+            </div>
+            <div>
+                <div class="text-3xl md:text-4xl font-bold text-brand">97%</div>
+                <div class="text-sm text-gray-500 mt-1">Already on WhatsApp</div>
+            </div>
+            <div>
+                <div class="text-3xl md:text-4xl font-bold text-brand">0.07%</div>
+                <div class="text-sm text-gray-500 mt-1">Of websites are in Hindi</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem -->
+    <section id="problem" class="py-16 md:py-24 px-5">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-14">
+                <div class="text-xs font-semibold tracking-wide uppercase text-brand mb-3">The Problem</div>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">India's small businesses are invisible online.</h2>
+                <p class="text-gray-500 text-lg max-w-2xl mx-auto">The chai stall owner, the neighbourhood tutor, the freelance photographer, the local clinic. They all need customers — and they have zero appetite for learning software.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+                <div class="bg-white border border-gray-100 rounded-2xl p-6 hover:shadow-md transition-shadow">
+                    <div class="text-2xl mb-3">🔍</div>
+                    <h3 class="font-semibold text-base mb-2">Can't be found online</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed">No website. Maybe a Google listing a cousin set up 2 years ago with the wrong phone number. New customers can't discover them.</p>
+                </div>
+                <div class="bg-white border border-gray-100 rounded-2xl p-6 hover:shadow-md transition-shadow">
+                    <div class="text-2xl mb-3">💸</div>
+                    <h3 class="font-semibold text-base mb-2">Solutions are too expensive</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed">A freelancer charges ₹15K-40K for an English-only site. Agencies want ₹30K+. And maintenance is another ₹5K-20K/month.</p>
+                </div>
+                <div class="bg-white border border-gray-100 rounded-2xl p-6 hover:shadow-md transition-shadow">
+                    <div class="text-2xl mb-3">🌐</div>
+                    <h3 class="font-semibold text-base mb-2">Language barrier</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed">Only 2-4% of Indians have professional English fluency. The web is 49.5% English, 0.07% Hindi. SMBs can't create content for it.</p>
+                </div>
+                <div class="bg-white border border-gray-100 rounded-2xl p-6 hover:shadow-md transition-shadow">
+                    <div class="text-2xl mb-3">📱</div>
+                    <h3 class="font-semibold text-base mb-2">Tools are too complex</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed">Wix, GoDaddy, WordPress — all require dashboards, forms, and technical literacy. 94% of MSMEs are single-owner operations.</p>
+                </div>
+                <div class="bg-white border border-gray-100 rounded-2xl p-6 hover:shadow-md transition-shadow">
+                    <div class="text-2xl mb-3">🏪</div>
+                    <h3 class="font-semibold text-base mb-2">Platforms eat their profits</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed">Zomato takes 25-35% commission. JustDial charges ₹18K-59K/year for mostly fake leads. They don't own their customer data.</p>
+                </div>
+                <div class="bg-white border border-gray-100 rounded-2xl p-6 hover:shadow-md transition-shadow">
+                    <div class="text-2xl mb-3">📉</div>
+                    <h3 class="font-semibold text-base mb-2">Social media stopped working free</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed">Facebook organic reach: 1.37%. Instagram engagement down 18% YoY. The free lunch is over. SMBs need owned presence.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Thesis -->
+    <section class="bg-brand py-16 md:py-24 px-5">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+                What if every small business operation<br class="hidden md:block"> could be a conversation?
+            </h2>
+            <p class="text-green-100 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
+                Not a chatbot. Not a menu with buttons. A genuine AI agent that understands your business, remembers your context, and takes action on your behalf — inside the chat app you already use 14 hours a day.
             </p>
-          </div>
-          <div class="rounded-xl p-4 border border-white/5 bg-white/[0.02]">
-            <h4 class="text-violet-400 text-xs font-bold uppercase tracking-wide mb-2">Why Chat-First Wins in India
-            </h4>
-            <p class="text-slate-500 text-xs leading-relaxed m-0">800M+ smartphones but low software literacy. Everyone
-              can send a message. Native Hinglish/Hindi support. Trust in people over software. No app install &mdash;
-              just share a Telegram link.</p>
-          </div>
-          <div class="rounded-xl p-4 border border-white/5 bg-white/[0.02]">
-            <h4 class="text-violet-400 text-xs font-bold uppercase tracking-wide mb-2">The Moat</h4>
-            <p class="text-slate-500 text-xs leading-relaxed m-0">Not any single agent. The moat is the relationship
-              (3+ months of business context), the orchestration layer (6 agents sharing context), and the human network
-              (curated designers, writers, CAs).</p>
-          </div>
-        </div>
-
-        <!-- Business Model -->
-        <div class="rounded-xl p-5 border border-violet-500/15 bg-violet-500/5">
-          <h4 class="text-violet-400 text-xs font-bold uppercase tracking-wide mb-2">Business Model</h4>
-          <p class="text-slate-400 text-xs leading-relaxed m-0">₹9,999 one-time to build a professional website via
-            chat. ₹999/mo for ongoing maintenance and updates. ~₹22K/year &mdash; cheaper than any agency, and the site
-            stays alive. As trust deepens, add-on agents (booking, reviews, social) at ₹499-999/mo each. AI handles 90%+
-            of interactions &mdash; humans only step in for custom design. Like Shopify for Indian SMBs, but you never
-            leave WhatsApp.</p>
-        </div>
-      </section>
-
-      <!-- GTM -->
-      <section id="sec-gtm" class="section-hidden">
-        <h2 class="text-lg font-bold text-slate-200 mb-4">Go-to-Market: Dermatologists</h2>
-
-        <!-- What we're selling -->
-        <div class="rounded-xl p-6 mb-5 border border-green-500/20 bg-green-500/5">
-          <h3 class="text-green-400 text-sm font-bold mb-3">What We're Selling</h3>
-          <p class="text-slate-400 text-sm leading-relaxed m-0 mb-3">A professional website built and maintained
-            entirely through WhatsApp. Not a tool. Not an agency. The doctor chats with us, we deliver a live website.
-            They message us when they want changes. That's it.</p>
-          <div class="rounded-lg p-3 bg-white/[0.05] border border-white/10 mt-3">
-            <p class="text-xs text-slate-400 italic m-0">"If you sell the tool, you're in a race against the model. But
-              if you sell the work, every improvement in the model makes your service faster, cheaper, and harder to
-              compete with." &mdash; Julien Bek, Sequoia</p>
-          </div>
-        </div>
-
-        <!-- What They Get -->
-        <h3 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-4">What The Doctor Gets</h3>
-        <div class="grid md:grid-cols-3 gap-3 mb-6">
-          <div class="rounded-xl p-4 border border-violet-500/15 bg-violet-500/[0.03]">
-            <div class="flex justify-between items-center mb-2">
-              <h4 class="text-violet-400 text-xs font-bold m-0">Professional Website</h4>
-              <span class="text-[10px] text-green-400 bg-green-500/10 px-1.5 py-0.5 rounded">95% AI</span>
+            <div class="grid md:grid-cols-3 gap-6 text-left">
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+                    <div class="text-white/60 text-sm font-medium mb-2">You say:</div>
+                    <div class="text-white font-medium">"Mera website update karo"</div>
+                    <div class="text-green-200 text-sm mt-2">→ Website Agent handles it</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+                    <div class="text-white/60 text-sm font-medium mb-2">You say:</div>
+                    <div class="text-white font-medium">"Kal ka invoice bhejo Sharma ji ko"</div>
+                    <div class="text-green-200 text-sm mt-2">→ Billing Agent handles it</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+                    <div class="text-white/60 text-sm font-medium mb-2">You say:</div>
+                    <div class="text-white font-medium">"Instagram ke liye kuch post banao"</div>
+                    <div class="text-green-200 text-sm mt-2">→ Marketing Agent handles it</div>
+                </div>
             </div>
-            <p class="text-slate-500 text-xs leading-relaxed m-0">Mobile-first, fast-loading, SEO-optimized static
-              site. Built from a 5-minute WhatsApp conversation. Not WordPress. Custom domain. Live in minutes.</p>
-          </div>
-          <div class="rounded-xl p-4 border border-orange-500/15 bg-orange-500/[0.03]">
-            <div class="flex justify-between items-center mb-2">
-              <h4 class="text-orange-400 text-xs font-bold m-0">Chat-Based Updates</h4>
-              <span class="text-[10px] text-green-400 bg-green-500/10 px-1.5 py-0.5 rounded">90% AI</span>
-            </div>
-            <p class="text-slate-500 text-xs leading-relaxed m-0">"Add teeth whitening &mdash; ₹3000." "Change Monday
-              timing to 10am-6pm." "Upload this photo to gallery." AI makes the change, shows preview, publishes on
-              approval.</p>
-          </div>
-          <div class="rounded-xl p-4 border border-cyan-500/15 bg-cyan-500/[0.03]">
-            <div class="flex justify-between items-center mb-2">
-              <h4 class="text-cyan-400 text-xs font-bold m-0">Ongoing Improvements</h4>
-              <span class="text-[10px] text-green-400 bg-green-500/10 px-1.5 py-0.5 rounded">85% AI</span>
-            </div>
-            <p class="text-slate-500 text-xs leading-relaxed m-0">Proactive nudges: seasonal updates, new service
-              suggestions, photo refreshes. The site stays alive. HIL for custom design, logos, complex layouts.</p>
-          </div>
+            <p class="text-green-200/80 text-sm mt-8">Same chat. Same trust. One relationship that compounds over time.</p>
         </div>
+    </section>
 
-        <!-- Pricing -->
-        <h3 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-4">Pricing</h3>
-        <div class="grid md:grid-cols-2 gap-3 mb-6">
-          <div class="rounded-xl p-5 border border-violet-500/20 bg-violet-500/[0.03]">
-            <h4 class="text-violet-400 text-xs font-bold mb-1">Onboarding</h4>
-            <p class="text-3xl font-extrabold text-slate-200 m-0 mb-2">₹9,999<span
-                class="text-xs text-slate-500 font-normal"> one-time</span></p>
-            <div class="text-slate-500 text-xs leading-relaxed space-y-1">
-              <p class="m-0">&bull; Professional website built via WhatsApp conversation</p>
-              <p class="m-0">&bull; Custom domain setup (domain cost separate)</p>
-              <p class="m-0">&bull; Mobile-first, fast-loading, SEO-optimized</p>
-              <p class="m-0">&bull; Vertical-specific template (dermatologist services, treatments, gallery)</p>
-              <p class="m-0">&bull; Live within same day</p>
+    <!-- Why Conversational Wins -->
+    <section class="py-16 md:py-24 px-5 bg-gray-50/50">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-14">
+                <div class="text-xs font-semibold tracking-wide uppercase text-brand mb-3">Why This Works in India</div>
+                <h2 class="text-3xl md:text-4xl font-bold">Conversational-first is a structural advantage.</h2>
             </div>
-          </div>
-          <div class="rounded-xl p-5 border border-green-500/20 bg-green-500/[0.03]">
-            <h4 class="text-green-400 text-xs font-bold mb-1">Maintenance</h4>
-            <p class="text-3xl font-extrabold text-slate-200 m-0 mb-2">₹999<span
-                class="text-xs text-slate-500 font-normal">/month</span></p>
-            <div class="text-slate-500 text-xs leading-relaxed space-y-1">
-              <p class="m-0">&bull; Unlimited updates via WhatsApp chat</p>
-              <p class="m-0">&bull; Add/edit services, photos, timings, contact info</p>
-              <p class="m-0">&bull; New pages and sections as needed</p>
-              <p class="m-0">&bull; Proactive improvement suggestions</p>
-              <p class="m-0">&bull; HIL for custom design requests</p>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white border border-gray-100 rounded-2xl p-7">
+                    <h3 class="font-bold text-lg mb-2">💬 Comfort & Literacy</h3>
+                    <p class="text-gray-500 text-[15px] leading-relaxed">800M+ smartphone users, but software literacy is low outside metros. Everyone knows how to send a message. Not everyone knows how to navigate a dashboard.</p>
+                </div>
+                <div class="bg-white border border-gray-100 rounded-2xl p-7">
+                    <h3 class="font-bold text-lg mb-2">🗣️ Language</h3>
+                    <p class="text-gray-500 text-[15px] leading-relaxed">Kam.ai handles Hinglish, Hindi, and regional languages natively. No UI to translate. The conversation IS the interface.</p>
+                </div>
+                <div class="bg-white border border-gray-100 rounded-2xl p-7">
+                    <h3 class="font-bold text-lg mb-2">🤝 Trust</h3>
+                    <p class="text-gray-500 text-[15px] leading-relaxed">Indian SMBs trust people, not software. A conversational agent that remembers context and talks like a helpful assistant builds trust faster than any SaaS UI.</p>
+                </div>
+                <div class="bg-white border border-gray-100 rounded-2xl p-7">
+                    <h3 class="font-bold text-lg mb-2">📲 Distribution</h3>
+                    <p class="text-gray-500 text-[15px] leading-relaxed">No app install. No signup flow. Share a WhatsApp link — that's the entire acquisition funnel. 97% of Indian SMBs are already there.</p>
+                </div>
             </div>
-          </div>
         </div>
-        <div class="rounded-lg p-3 bg-white/[0.03] border border-white/5 mb-6">
-          <p class="text-slate-400 text-xs m-0 text-center"><strong class="text-slate-300">~₹22K/year</strong> &mdash;
-            cheaper than any agency (₹30-50K one-time, no maintenance). Doctor pays once to build, monthly to maintain.
-            Future add-ons (booking agent, review agent, social agent) at ₹499-999/mo each.</p>
-        </div>
+    </section>
 
-        <!-- GTM Phases -->
-        <h3 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-4">GTM Phases</h3>
-        <div class="space-y-3 mb-6">
-          <div class="rounded-xl p-5 border border-green-500/15 bg-green-500/[0.03]">
-            <div class="flex items-center gap-3 mb-3">
-              <span
-                class="text-[10px] font-extrabold text-green-400 bg-green-500/10 px-2 py-0.5 rounded">PHASE 1</span>
-              <span class="text-sm font-bold text-slate-300">SCOUT &mdash; Build Lead Database (Week 1-2)</span>
-            </div>
-            <div class="grid md:grid-cols-3 gap-3">
-              <div>
-                <p class="text-xs text-slate-500 m-0"><strong class="text-slate-400">Target:</strong> 2,000-5,000
-                  cosmetic dermatologists across 15-20 Indian cities</p>
-              </div>
-              <div>
-                <p class="text-xs text-slate-500 m-0"><strong class="text-slate-400">Sources:</strong> Practo (primary),
-                  Google Maps/GBP, JustDial. Merge, deduplicate, enrich with phone numbers.</p>
-              </div>
-              <div>
-                <p class="text-xs text-slate-500 m-0"><strong class="text-slate-400">Key filter:</strong> Has website?
-                  (Y/N). No website = primary target. Bad/outdated website = secondary. Competitor comparison per city.
+    <!-- First Product: Website Agent -->
+    <section id="product" class="py-16 md:py-24 px-5">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-14">
+                <div class="inline-block bg-green-50 text-brand text-xs font-semibold tracking-wide uppercase px-4 py-1.5 rounded-full mb-4">
+                    First Product — Live Now
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">The Website Agent</h2>
+                <p class="text-gray-500 text-lg max-w-2xl mx-auto leading-relaxed">
+                    Chat on WhatsApp in your language. Get a professional English website with a Hindi toggle. Show up on Google. Done in 5 days.
                 </p>
-              </div>
             </div>
-          </div>
 
-          <div class="rounded-xl p-5 border border-orange-500/15 bg-orange-500/[0.03]">
-            <div class="flex items-center gap-3 mb-3">
-              <span
-                class="text-[10px] font-extrabold text-orange-400 bg-orange-500/10 px-2 py-0.5 rounded">PHASE 2</span>
-              <span class="text-sm font-bold text-slate-300">Outreach &mdash; Personalized WhatsApp (Week 3-4)</span>
+            <!-- Chat Demo -->
+            <div class="max-w-md mx-auto mb-16 space-y-3">
+                <div class="chat-bubble">
+                    Mera naam Rajesh Jewellers hai. MI Road pe shop hai. Gold aur diamond jewellery. 22 karat, BIS certified. 💎
+                </div>
+                <div class="chat-bubble chat-bubble-reply">
+                    Got it, Rajesh! I'm creating your bilingual website — English for Google ranking, Hindi for your local customers. I'll have a preview ready in a few hours. 🚀
+                </div>
+                <div class="chat-bubble">
+                    Timing 10-8 hai, Sunday band. Photos bhej raha hoon 📸
+                </div>
+                <div class="chat-bubble chat-bubble-reply">
+                    Perfect. I'll add your hours and photos. Your site will have: services page, gallery, Google Maps, WhatsApp button, and contact form. All bilingual. ✅
+                </div>
             </div>
-            <div class="grid md:grid-cols-3 gap-3">
-              <div>
-                <p class="text-xs text-slate-500 m-0"><strong class="text-slate-400">No-website hook:</strong> "80% of
-                  patients Google before booking. You don't have a website. Your competitors do. We'll build yours
-                  through WhatsApp in 10 minutes."</p>
-              </div>
-              <div>
-                <p class="text-xs text-slate-500 m-0"><strong class="text-slate-400">Bad-website hook:</strong> "Your
-                  website hasn't been updated since 2019 and takes 8s to load on mobile. We'll replace it &mdash; just
-                  tell us about your clinic on WhatsApp."</p>
-              </div>
-              <div>
-                <p class="text-xs text-slate-500 m-0"><strong class="text-slate-400">Funnel:</strong> 500
-                  messages/week &rarr; 40-60 responses &rarr; 15-20 calls &rarr; 8-12 conversions/week.</p>
-              </div>
-            </div>
-          </div>
 
-          <div class="rounded-xl p-5 border border-violet-500/15 bg-violet-500/[0.03]">
-            <div class="flex items-center gap-3 mb-3">
-              <span
-                class="text-[10px] font-extrabold text-violet-400 bg-violet-500/10 px-2 py-0.5 rounded">PHASE 3</span>
-              <span class="text-sm font-bold text-slate-300">Deliver &mdash; Website via WhatsApp</span>
+            <!-- What's included -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+                <div class="bg-green-50/50 border border-green-100 rounded-2xl p-6">
+                    <div class="text-brand font-semibold mb-2">🌐 Bilingual by Default</div>
+                    <p class="text-sm text-gray-600">English primary for Google SEO. Hindi toggle for customer trust. Both generated from your Hindi/Hinglish chat.</p>
+                </div>
+                <div class="bg-green-50/50 border border-green-100 rounded-2xl p-6">
+                    <div class="text-brand font-semibold mb-2">📍 Google Visibility</div>
+                    <p class="text-sm text-gray-600">Google Business Profile setup, local schema markup, geo-targeted content. Show up when someone nearby searches.</p>
+                </div>
+                <div class="bg-green-50/50 border border-green-100 rounded-2xl p-6">
+                    <div class="text-brand font-semibold mb-2">📱 Mobile-First</div>
+                    <p class="text-sm text-gray-600">Loads in under 2 seconds. Responsive design. WhatsApp click-to-chat. UPI QR code. Instagram & YouTube embeds.</p>
+                </div>
+                <div class="bg-green-50/50 border border-green-100 rounded-2xl p-6">
+                    <div class="text-brand font-semibold mb-2">🔄 Updates via WhatsApp</div>
+                    <p class="text-sm text-gray-600">Change prices, add photos, update timings — just send a message. No dashboards. No logins. Ever.</p>
+                </div>
+                <div class="bg-green-50/50 border border-green-100 rounded-2xl p-6">
+                    <div class="text-brand font-semibold mb-2">🔒 You Own Everything</div>
+                    <p class="text-sm text-gray-600">.com domain registered in YOUR name. Ownership certificate provided. Already have a domain? We'll set it up for free.</p>
+                </div>
+                <div class="bg-green-50/50 border border-green-100 rounded-2xl p-6">
+                    <div class="text-brand font-semibold mb-2">✅ Compliance Built In</div>
+                    <p class="text-sm text-gray-600">SSL, DPDP Act privacy policy, FSSAI/GST/CIN display, voice search optimized FAQs. All included.</p>
+                </div>
             </div>
-            <div class="grid md:grid-cols-3 gap-3">
-              <div>
-                <p class="text-xs text-slate-500 m-0"><strong class="text-slate-400">Onboarding:</strong> WhatsApp
-                  conversation. Bot asks 5 questions: clinic name, doctor credentials, services, photos, color
-                  preference. Done in 5 minutes.</p>
-              </div>
-              <div>
-                <p class="text-xs text-slate-500 m-0"><strong class="text-slate-400">Delivery:</strong> AI generates
-                  website in 30-60 seconds. Preview link on WhatsApp. Doctor approves or requests changes. Publish with
-                  one tap.</p>
-              </div>
-              <div>
-                <p class="text-xs text-slate-500 m-0"><strong class="text-slate-400">Retention:</strong> Doctor
-                  messages whenever they want changes. AI handles updates instantly. Site stays alive. Relationship
-                  deepens. Upsell to booking/review agents over time.</p>
-              </div>
-            </div>
-          </div>
         </div>
+    </section>
 
-        <!-- City Priority -->
-        <h3 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-4">City Targeting</h3>
-        <div class="grid md:grid-cols-3 gap-3 mb-6">
-          <div class="rounded-xl p-4 border border-green-500/10 bg-green-500/[0.03]">
-            <h4 class="text-green-400 text-xs font-bold mb-2">Tier 1 (Run First)</h4>
-            <p class="text-slate-500 text-[11px] leading-relaxed m-0">Bangalore, Mumbai, Delhi, Hyderabad, Chennai,
-              Pune. Highest density of cosmetic derms, most digitally savvy, highest patient LTV.</p>
-          </div>
-          <div class="rounded-xl p-4 border border-violet-500/10 bg-violet-500/[0.03]">
-            <div class="flex items-center gap-2 mb-2">
-              <h4 class="text-violet-400 text-xs font-bold m-0">Tier 2 (ICP Sweet Spot)</h4>
+    <!-- How It Works -->
+    <section id="how-it-works" class="py-16 md:py-24 px-5 bg-gray-50/50">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-14">
+                <div class="text-xs font-semibold tracking-wide uppercase text-brand mb-3">How It Works</div>
+                <h2 class="text-3xl md:text-4xl font-bold">Three steps. Five days. Zero effort.</h2>
             </div>
-            <p class="text-slate-500 text-[11px] leading-relaxed m-0">Jaipur, Lucknow, Indore, Coimbatore, Kochi,
-              Chandigarh, Ahmedabad. Chain threat highest (Kaya/Oliva expanding), best conversion potential.</p>
-          </div>
-          <div class="rounded-xl p-4 border border-white/5 bg-white/[0.02]">
-            <h4 class="text-slate-400 text-xs font-bold mb-2">Tier 3 (Expand Later)</h4>
-            <p class="text-slate-500 text-[11px] leading-relaxed m-0">Nagpur, Bhopal, Vizag, Surat, Patna. Lower
-              density but less competition for the service.</p>
-          </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="w-14 h-14 bg-brand text-white rounded-2xl flex items-center justify-center text-xl font-bold mx-auto mb-5">1</div>
+                    <h3 class="font-bold text-lg mb-2">Chat with us</h3>
+                    <p class="text-gray-500 text-[15px] leading-relaxed">Message us on WhatsApp in Hindi, Hinglish, or English. Share your business details, photos, and prices. 10-15 minutes.</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-14 h-14 bg-brand text-white rounded-2xl flex items-center justify-center text-xl font-bold mx-auto mb-5">2</div>
+                    <h3 class="font-bold text-lg mb-2">We build your website</h3>
+                    <p class="text-gray-500 text-[15px] leading-relaxed">AI generates professional English content + Hindi toggle. Category-specific template. SEO, Google Business Profile — all set up.</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-14 h-14 bg-brand text-white rounded-2xl flex items-center justify-center text-xl font-bold mx-auto mb-5">3</div>
+                    <h3 class="font-bold text-lg mb-2">You're live on Google</h3>
+                    <p class="text-gray-500 text-[15px] leading-relaxed">Your bilingual website is live. Domain in your name. Need changes anytime? Just message us on WhatsApp.</p>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <!-- Why Existing Solutions Fail -->
-        <h3 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-4">Why Existing Solutions Fail</h3>
-        <div class="grid md:grid-cols-3 gap-3 mb-6">
-          <div class="rounded-xl p-4 border border-red-500/10 bg-red-500/[0.03]">
-            <h4 class="text-red-400 text-xs font-bold mb-2">Website Builders</h4>
-            <p class="text-slate-500 text-[11px] leading-relaxed m-0">Wix, WordPress, Squarespace &mdash; require
-              learning a visual editor. Too complex. Not mobile-first. English-only. Doctors don't have time to build or
-              maintain.</p>
-          </div>
-          <div class="rounded-xl p-4 border border-red-500/10 bg-red-500/[0.03]">
-            <h4 class="text-red-400 text-xs font-bold mb-2">Agencies</h4>
-            <p class="text-slate-500 text-[11px] leading-relaxed m-0">₹30-50K+ for a basic site. 4-6 weeks delivery.
-              Doctor has no control. Gets stale within months. At ~₹22K/year with active maintenance, we're cheaper AND
-              the site stays alive.</p>
-          </div>
-          <div class="rounded-xl p-4 border border-red-500/10 bg-red-500/[0.03]">
-            <h4 class="text-red-400 text-xs font-bold mb-2">Practo Dependency</h4>
-            <p class="text-slate-500 text-[11px] leading-relaxed m-0">Practo charges 10-15% per lead. Patients who find
-              the doctor on Google directly don't cost that commission. Your own website builds an organic pipeline.</p>
-          </div>
+    <!-- Competitive Edge -->
+    <section class="py-16 md:py-24 px-5">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-14">
+                <div class="text-xs font-semibold tracking-wide uppercase text-brand mb-3">Why Kam.ai</div>
+                <h2 class="text-3xl md:text-4xl font-bold">Freelancer quality. Platform pricing. WhatsApp simplicity.</h2>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                    <thead>
+                        <tr class="border-b border-gray-200">
+                            <th class="text-left py-4 pr-4 font-semibold text-gray-900"></th>
+                            <th class="text-center py-4 px-4 font-bold text-brand bg-green-50/50 rounded-t-xl">Kam.ai</th>
+                            <th class="text-center py-4 px-4 font-semibold text-gray-500">Freelancer</th>
+                            <th class="text-center py-4 px-4 font-semibold text-gray-500">Wix / GoDaddy</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-600">
+                        <tr class="border-b border-gray-100">
+                            <td class="py-3.5 pr-4 font-medium text-gray-900">Client effort</td>
+                            <td class="py-3.5 px-4 text-center bg-green-50/30 font-medium text-brand">10 min WhatsApp</td>
+                            <td class="py-3.5 px-4 text-center">Weeks of back-and-forth</td>
+                            <td class="py-3.5 px-4 text-center">DIY, hours/days</td>
+                        </tr>
+                        <tr class="border-b border-gray-100">
+                            <td class="py-3.5 pr-4 font-medium text-gray-900">English needed?</td>
+                            <td class="py-3.5 px-4 text-center bg-green-50/30 font-medium text-brand">No</td>
+                            <td class="py-3.5 px-4 text-center">Yes</td>
+                            <td class="py-3.5 px-4 text-center">Yes</td>
+                        </tr>
+                        <tr class="border-b border-gray-100">
+                            <td class="py-3.5 pr-4 font-medium text-gray-900">Bilingual output</td>
+                            <td class="py-3.5 px-4 text-center bg-green-50/30 font-medium text-brand">English + Hindi</td>
+                            <td class="py-3.5 px-4 text-center">English only</td>
+                            <td class="py-3.5 px-4 text-center">No</td>
+                        </tr>
+                        <tr class="border-b border-gray-100">
+                            <td class="py-3.5 pr-4 font-medium text-gray-900">Delivery</td>
+                            <td class="py-3.5 px-4 text-center bg-green-50/30 font-medium text-brand">5 days</td>
+                            <td class="py-3.5 px-4 text-center">2-4 weeks</td>
+                            <td class="py-3.5 px-4 text-center">Self-service</td>
+                        </tr>
+                        <tr class="border-b border-gray-100">
+                            <td class="py-3.5 pr-4 font-medium text-gray-900">Year 1 cost</td>
+                            <td class="py-3.5 px-4 text-center bg-green-50/30 font-medium text-brand">~₹11K</td>
+                            <td class="py-3.5 px-4 text-center">₹15K-40K+</td>
+                            <td class="py-3.5 px-4 text-center">₹2.4K-18K</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3.5 pr-4 font-medium text-gray-900">Ongoing changes</td>
+                            <td class="py-3.5 px-4 text-center bg-green-50/30 font-medium text-brand">WhatsApp message</td>
+                            <td class="py-3.5 px-4 text-center">₹5K-20K/mo extra</td>
+                            <td class="py-3.5 px-4 text-center">Self-service</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
+    </section>
 
-        <!-- Unit Economics -->
-        <div class="rounded-xl p-5 border border-cyan-500/15 bg-cyan-500/[0.03]">
-          <h4 class="text-cyan-400 text-xs font-bold uppercase tracking-wide mb-3">Unit Economics</h4>
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+    <!-- Vision: Multi-Agent OS -->
+    <section class="py-16 md:py-24 px-5 bg-gray-50/50">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-14">
+                <div class="text-xs font-semibold tracking-wide uppercase text-brand mb-3">The Vision</div>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">One chat. Every business need.</h2>
+                <p class="text-gray-500 text-lg max-w-2xl mx-auto">The website is the wedge. The vision is a multi-agent operating system where each business need is handled by a specialized AI agent — all inside your WhatsApp.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+                <div class="bg-white border border-gray-100 rounded-2xl p-6">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 bg-green-50 rounded-xl flex items-center justify-center text-lg">🌐</div>
+                        <div>
+                            <h3 class="font-semibold">Website Agent</h3>
+                            <span class="text-xs text-whatsapp font-medium bg-green-50 px-2 py-0.5 rounded-full">Live</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-500">Build and maintain a professional bilingual website through chat.</p>
+                </div>
+                <div class="bg-white border border-gray-100 rounded-2xl p-6 opacity-60">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 bg-gray-50 rounded-xl flex items-center justify-center text-lg">💰</div>
+                        <div>
+                            <h3 class="font-semibold">Billing Agent</h3>
+                            <span class="text-xs text-gray-400 font-medium bg-gray-50 px-2 py-0.5 rounded-full">Coming soon</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-500">Invoices, payment reminders, GST compliance — all via chat.</p>
+                </div>
+                <div class="bg-white border border-gray-100 rounded-2xl p-6 opacity-60">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 bg-gray-50 rounded-xl flex items-center justify-center text-lg">📅</div>
+                        <div>
+                            <h3 class="font-semibold">Booking Agent</h3>
+                            <span class="text-xs text-gray-400 font-medium bg-gray-50 px-2 py-0.5 rounded-full">Coming soon</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-500">Appointments, reminders, no-show management — zero double bookings.</p>
+                </div>
+                <div class="bg-white border border-gray-100 rounded-2xl p-6 opacity-60">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 bg-gray-50 rounded-xl flex items-center justify-center text-lg">📣</div>
+                        <div>
+                            <h3 class="font-semibold">Marketing Agent</h3>
+                            <span class="text-xs text-gray-400 font-medium bg-gray-50 px-2 py-0.5 rounded-full">Coming soon</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-500">Social media posts, festival campaigns, Google visibility — automated.</p>
+                </div>
+                <div class="bg-white border border-gray-100 rounded-2xl p-6 opacity-60">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 bg-gray-50 rounded-xl flex items-center justify-center text-lg">👥</div>
+                        <div>
+                            <h3 class="font-semibold">CRM Agent</h3>
+                            <span class="text-xs text-gray-400 font-medium bg-gray-50 px-2 py-0.5 rounded-full">Coming soon</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-500">Customer history, follow-ups, referral tracking — context that compounds.</p>
+                </div>
+                <div class="bg-white border border-gray-100 rounded-2xl p-6 opacity-60">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 bg-gray-50 rounded-xl flex items-center justify-center text-lg">📊</div>
+                        <div>
+                            <h3 class="font-semibold">Insights Agent</h3>
+                            <span class="text-xs text-gray-400 font-medium bg-gray-50 px-2 py-0.5 rounded-full">Coming soon</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-500">Revenue trends, visitor analytics, growth suggestions — business intelligence in chat.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team -->
+    <section id="team" class="py-16 md:py-24 px-5">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-14">
+                <div class="text-xs font-semibold tracking-wide uppercase text-brand mb-3">Team</div>
+                <h2 class="text-3xl md:text-4xl font-bold">Built by people who know the market.</h2>
+            </div>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white border border-gray-100 rounded-2xl p-7">
+                    <h3 class="font-bold text-lg">Shashank Singla</h3>
+                    <p class="text-brand text-sm font-medium mb-3">Co-founder — Product, Strategy & Engineering</p>
+                    <p class="text-gray-500 text-[15px] leading-relaxed">Runs HCode Technologies. Has built and managed websites for 100+ local businesses — the manual version of what Kam.ai automates with AI.</p>
+                </div>
+                <div class="bg-white border border-gray-100 rounded-2xl p-7">
+                    <h3 class="font-bold text-lg">Gaurav Tiwari</h3>
+                    <p class="text-brand text-sm font-medium mb-3">Co-founder — Business & Growth</p>
+                    <p class="text-gray-500 text-[15px] leading-relaxed">CEO of PayTunes, a digital advertising platform. Deep experience in helping brands reach diverse Indian demographics through innovative digital channels.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16 md:py-24 px-5 bg-brand">
+        <div class="max-w-3xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Ready to get your business online?</h2>
+            <p class="text-green-100 text-lg mb-8 leading-relaxed">Join our pilot in Delhi NCR & Rajasthan. Limited spots. Chat on WhatsApp — we'll have your website live in 5 days.</p>
+            <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                <a href="pilot.html" class="bg-whatsapp hover:bg-whatsapp-hover text-white font-semibold text-base px-8 py-3.5 rounded-xl transition-colors inline-flex items-center justify-center gap-2">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    See Pilot Details
+                </a>
+                <a href="https://wa.me/919910013910?text=Hi%2C%20I%27m%20interested%20in%20Kam.ai" target="_blank" class="border border-white/30 hover:bg-white/10 text-white font-semibold text-base px-8 py-3.5 rounded-xl transition-colors inline-flex items-center justify-center">
+                    Message Us Directly
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12 px-5">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
             <div>
-              <p class="text-2xl font-extrabold text-slate-200 m-0">₹22K</p>
-              <p class="text-[10px] text-slate-500 m-0">Year 1 revenue per customer</p>
+                <div class="text-white font-bold text-lg">Kam<span class="text-brand-light">.ai</span></div>
+                <p class="text-sm mt-1">The operating system for India's small businesses.</p>
             </div>
-            <div>
-              <p class="text-2xl font-extrabold text-slate-200 m-0">90%+</p>
-              <p class="text-[10px] text-slate-500 m-0">Gross margin (AI-generated sites)</p>
+            <div class="flex items-center gap-6 text-sm">
+                <a href="pilot.html" class="hover:text-white transition-colors">Pilot Offer</a>
+                <a href="https://hcode.tech" target="_blank" class="hover:text-white transition-colors">HCode Technologies</a>
+                <span class="text-gray-600">&</span>
+                <a href="https://paytunes.in" target="_blank" class="hover:text-white transition-colors">PayTunes</a>
             </div>
-            <div>
-              <p class="text-2xl font-extrabold text-slate-200 m-0">~₹0</p>
-              <p class="text-[10px] text-slate-500 m-0">CAC (WhatsApp outreach)</p>
-            </div>
-            <div>
-              <p class="text-2xl font-extrabold text-slate-200 m-0">₹34K+</p>
-              <p class="text-[10px] text-slate-500 m-0">LTV with add-on agents</p>
-            </div>
-          </div>
         </div>
-      </section>
+    </footer>
 
-      <!-- ARCHITECTURE -->
-      <section id="sec-architecture" class="section-hidden">
-        <p class="text-slate-400 text-sm leading-relaxed mb-4">Three-layer architecture: channels on top, orchestrator
-          in the middle, specialized agents below. The orchestrator is the brain &mdash; it routes intents, manages
-          sessions, and decides when to escalate to humans.</p>
-        <div class="py-4">
-          <svg viewBox="0 0 800 520" class="w-full h-auto">
-            <defs>
-              <linearGradient id="gUser" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#22c55e" />
-                <stop offset="100%" stop-color="#16a34a" />
-              </linearGradient>
-              <linearGradient id="gOrch" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#f97316" />
-                <stop offset="100%" stop-color="#ea580c" />
-              </linearGradient>
-              <linearGradient id="gAgent" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#8b5cf6" />
-                <stop offset="100%" stop-color="#7c3aed" />
-              </linearGradient>
-              <linearGradient id="gInfra" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#06b6d4" />
-                <stop offset="100%" stop-color="#0891b2" />
-              </linearGradient>
-              <linearGradient id="gHIL" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#f43f5e" />
-                <stop offset="100%" stop-color="#e11d48" />
-              </linearGradient>
-              <filter id="shadow">
-                <feDropShadow dx="0" dy="2" stdDeviation="4" flood-opacity="0.15" />
-              </filter>
-            </defs>
-            <!-- Layer labels -->
-            <text x="16" y="46" fill="#9ca3af" font-size="11" font-family="monospace" font-weight="600">CHANNEL LAYER</text>
-            <text x="16" y="166" fill="#9ca3af" font-size="11" font-family="monospace" font-weight="600">ORCHESTRATION</text>
-            <text x="16" y="286" fill="#9ca3af" font-size="11" font-family="monospace" font-weight="600">AGENT LAYER</text>
-            <text x="16" y="426" fill="#9ca3af" font-size="11" font-family="monospace" font-weight="600">INFRASTRUCTURE</text>
-            <!-- Channel Layer -->
-            <rect x="160" y="20" width="140" height="56" rx="10" fill="url(#gUser)" filter="url(#shadow)" />
-            <text x="230" y="42" text-anchor="middle" fill="white" font-size="11" font-weight="700">TELEGRAM</text>
-            <text x="230" y="58" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="9">Bot API + Mini App</text>
-            <rect x="330" y="20" width="140" height="56" rx="10" fill="url(#gUser)" filter="url(#shadow)" />
-            <text x="400" y="42" text-anchor="middle" fill="white" font-size="11" font-weight="700">WHATSAPP</text>
-            <text x="400" y="58" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="9">Business API + Flows</text>
-            <rect x="500" y="20" width="140" height="56" rx="10" fill="url(#gUser)" filter="url(#shadow)" />
-            <text x="570" y="42" text-anchor="middle" fill="white" font-size="11" font-weight="700">WEB DASHBOARD</text>
-            <text x="570" y="58" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="9">Fallback + Admin</text>
-            <!-- Arrows down -->
-            <line x1="400" y1="76" x2="400" y2="110" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="4,3" />
-            <polygon points="396,108 404,108 400,116" fill="#6b7280" />
-            <!-- Orchestration -->
-            <rect x="200" y="118" width="400" height="72" rx="12" fill="url(#gOrch)" filter="url(#shadow)" />
-            <text x="400" y="143" text-anchor="middle" fill="white" font-size="14" font-weight="800">KAM+AI ORCHESTRATOR</text>
-            <text x="400" y="162" text-anchor="middle" fill="rgba(255,255,255,0.75)" font-size="10">Intent Router &#8226; Session Manager &#8226; Context Engine &#8226; Queue</text>
-            <text x="400" y="178" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="9">Stateful conversation management + tool dispatch</text>
-            <!-- HIL branch -->
-            <rect x="640" y="128" width="140" height="52" rx="10" fill="url(#gHIL)" filter="url(#shadow)" />
-            <text x="710" y="150" text-anchor="middle" fill="white" font-size="11" font-weight="700">HIL QUEUE</text>
-            <text x="710" y="165" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="9">Escalation &#8594; Human</text>
-            <line x1="600" y1="154" x2="640" y2="154" stroke="#f43f5e" stroke-width="1.5" stroke-dasharray="4,3" />
-            <polygon points="636,150 636,158 644,154" fill="#f43f5e" />
-            <!-- Arrows to agents -->
-            <line x1="300" y1="190" x2="180" y2="240" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="4,3" />
-            <line x1="400" y1="190" x2="400" y2="240" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="4,3" />
-            <line x1="500" y1="190" x2="580" y2="240" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="4,3" />
-            <!-- Agent Layer -->
-            <rect x="100" y="242" width="160" height="72" rx="10" fill="url(#gAgent)" filter="url(#shadow)" />
-            <text x="180" y="266" text-anchor="middle" fill="white" font-size="12" font-weight="700">WEBSITE AGENT</text>
-            <text x="180" y="282" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="9">Generate &#8226; Edit &#8226; Publish</text>
-            <text x="180" y="296" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8">Templates + AI Layout</text>
-            <rect x="310" y="242" width="160" height="72" rx="10" fill="url(#gAgent)" filter="url(#shadow)" opacity="0.6" />
-            <text x="390" y="266" text-anchor="middle" fill="white" font-size="12" font-weight="700">CONTENT AGENT</text>
-            <text x="390" y="282" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="9">Copy &#8226; Images &#8226; SEO</text>
-            <text x="390" y="296" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8">Future expansion</text>
-            <rect x="520" y="242" width="160" height="72" rx="10" fill="url(#gAgent)" filter="url(#shadow)" opacity="0.6" />
-            <text x="600" y="266" text-anchor="middle" fill="white" font-size="12" font-weight="700">PAYMENTS AGENT</text>
-            <text x="600" y="282" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="9">UPI &#8226; Invoicing &#8226; Subs</text>
-            <text x="600" y="296" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8">Razorpay / PhonePe</text>
-            <!-- Arrows to infra -->
-            <line x1="180" y1="314" x2="180" y2="370" stroke="#6b7280" stroke-width="1" stroke-dasharray="3,3" />
-            <line x1="390" y1="314" x2="390" y2="370" stroke="#6b7280" stroke-width="1" stroke-dasharray="3,3" />
-            <line x1="600" y1="314" x2="600" y2="370" stroke="#6b7280" stroke-width="1" stroke-dasharray="3,3" />
-            <!-- Infrastructure -->
-            <rect x="80" y="372" width="140" height="48" rx="8" fill="url(#gInfra)" filter="url(#shadow)" />
-            <text x="150" y="393" text-anchor="middle" fill="white" font-size="10" font-weight="600">HOSTING</text>
-            <text x="150" y="407" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="8">Cloudflare Pages/R2</text>
-            <rect x="240" y="372" width="140" height="48" rx="8" fill="url(#gInfra)" filter="url(#shadow)" />
-            <text x="310" y="393" text-anchor="middle" fill="white" font-size="10" font-weight="600">DATABASE</text>
-            <text x="310" y="407" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="8">Supabase / Postgres</text>
-            <rect x="400" y="372" width="140" height="48" rx="8" fill="url(#gInfra)" filter="url(#shadow)" />
-            <text x="470" y="393" text-anchor="middle" fill="white" font-size="10" font-weight="600">AI ENGINE</text>
-            <text x="470" y="407" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="8">Claude API / LLM</text>
-            <rect x="560" y="372" width="140" height="48" rx="8" fill="url(#gInfra)" filter="url(#shadow)" />
-            <text x="630" y="393" text-anchor="middle" fill="white" font-size="10" font-weight="600">PAYMENTS</text>
-            <text x="630" y="407" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="8">Razorpay UPI</text>
-            <!-- Preview callout -->
-            <rect x="80" y="460" width="620" height="40" rx="8" fill="#1e1b4b" filter="url(#shadow)" opacity="0.9" />
-            <text x="390" y="484" text-anchor="middle" fill="#c4b5fd" font-size="10" font-weight="600">
-              PREVIEW SYSTEM: Telegram Mini App renders live preview &#8594; User approves &#8594; Auto-publish to custom domain
-            </text>
-          </svg>
-        </div>
-      </section>
+    <script>
+        // Scroll animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-      <!-- USER FLOWS -->
-      <section id="sec-flows" class="section-hidden">
-        <p class="text-slate-400 text-sm leading-relaxed mb-4">Three core flows: initial website creation (one-time),
-          ongoing maintenance (recurring), and HIL escalation (exception handling). All happen in the same chat thread.
-        </p>
-        <div class="py-3">
-          <svg viewBox="0 0 760 300" class="w-full h-auto">
-            <!-- Steps -->
-            <rect x="20" y="20" width="130" height="80" rx="8" fill="#22c55e" opacity="0.15" stroke="#22c55e" stroke-width="1.5" />
-            <text x="85" y="42" text-anchor="middle" fill="#22c55e" font-size="11" font-weight="800">1. ONBOARD</text>
-            <text x="85" y="58" text-anchor="middle" fill="#9ca3af" font-size="9">"I'm a dentist in</text>
-            <text x="85" y="74" text-anchor="middle" fill="#9ca3af" font-size="9">Karnal, build my site"</text>
-            <text x="160" y="64" fill="#6b7280" font-size="16">&#8594;</text>
-
-            <rect x="170" y="20" width="130" height="80" rx="8" fill="#f97316" opacity="0.15" stroke="#f97316" stroke-width="1.5" />
-            <text x="235" y="42" text-anchor="middle" fill="#f97316" font-size="11" font-weight="800">2. GATHER</text>
-            <text x="235" y="58" text-anchor="middle" fill="#9ca3af" font-size="9">Bot asks: services,</text>
-            <text x="235" y="74" text-anchor="middle" fill="#9ca3af" font-size="9">hours, photos, logo</text>
-            <text x="310" y="64" fill="#6b7280" font-size="16">&#8594;</text>
-
-            <rect x="320" y="20" width="130" height="80" rx="8" fill="#8b5cf6" opacity="0.15" stroke="#8b5cf6" stroke-width="1.5" />
-            <text x="385" y="42" text-anchor="middle" fill="#8b5cf6" font-size="11" font-weight="800">3. GENERATE</text>
-            <text x="385" y="58" text-anchor="middle" fill="#9ca3af" font-size="9">AI builds site from</text>
-            <text x="385" y="74" text-anchor="middle" fill="#9ca3af" font-size="9">template + content</text>
-            <text x="460" y="64" fill="#6b7280" font-size="16">&#8594;</text>
-
-            <rect x="470" y="20" width="130" height="80" rx="8" fill="#06b6d4" opacity="0.15" stroke="#06b6d4" stroke-width="1.5" />
-            <text x="535" y="42" text-anchor="middle" fill="#06b6d4" font-size="11" font-weight="800">4. PREVIEW</text>
-            <text x="535" y="58" text-anchor="middle" fill="#9ca3af" font-size="9">Mini App shows live</text>
-            <text x="535" y="74" text-anchor="middle" fill="#9ca3af" font-size="9">site inside Telegram</text>
-            <text x="610" y="64" fill="#6b7280" font-size="16">&#8594;</text>
-
-            <rect x="620" y="20" width="120" height="80" rx="8" fill="#f43f5e" opacity="0.15" stroke="#f43f5e" stroke-width="1.5" />
-            <text x="680" y="42" text-anchor="middle" fill="#f43f5e" font-size="11" font-weight="800">5. PUBLISH</text>
-            <text x="680" y="58" text-anchor="middle" fill="#9ca3af" font-size="9">One tap &#8594; live on</text>
-            <text x="680" y="74" text-anchor="middle" fill="#9ca3af" font-size="9">custom domain</text>
-
-            <!-- Maintenance flow -->
-            <text x="20" y="140" fill="#d1d5db" font-size="12" font-weight="700">ONGOING MAINTENANCE</text>
-            <rect x="20" y="155" width="170" height="40" rx="6" fill="#22c55e" opacity="0.1" stroke="#22c55e" stroke-width="1" />
-            <text x="105" y="179" text-anchor="middle" fill="#d1d5db" font-size="9">"Add new service: teeth whitening"</text>
-            <rect x="210" y="155" width="170" height="40" rx="6" fill="#8b5cf6" opacity="0.1" stroke="#8b5cf6" stroke-width="1" />
-            <text x="295" y="179" text-anchor="middle" fill="#d1d5db" font-size="9">AI updates site section + preview</text>
-            <rect x="400" y="155" width="170" height="40" rx="6" fill="#22c55e" opacity="0.1" stroke="#22c55e" stroke-width="1" />
-            <text x="485" y="179" text-anchor="middle" fill="#d1d5db" font-size="9">"Change phone number to 98xxx"</text>
-            <rect x="590" y="155" width="150" height="40" rx="6" fill="#06b6d4" opacity="0.1" stroke="#06b6d4" stroke-width="1" />
-            <text x="665" y="179" text-anchor="middle" fill="#d1d5db" font-size="9">Instant update + confirm</text>
-
-            <!-- HIL flow -->
-            <text x="20" y="234" fill="#f43f5e" font-size="12" font-weight="700">HIL ESCALATION</text>
-            <rect x="20" y="248" width="180" height="40" rx="6" fill="#f43f5e" opacity="0.1" stroke="#f43f5e" stroke-width="1" />
-            <text x="110" y="272" text-anchor="middle" fill="#d1d5db" font-size="9">"I need a custom logo designed"</text>
-            <rect x="220" y="248" width="160" height="40" rx="6" fill="#f97316" opacity="0.1" stroke="#f97316" stroke-width="1" />
-            <text x="300" y="272" text-anchor="middle" fill="#d1d5db" font-size="9">Agent detects: beyond AI</text>
-            <rect x="400" y="248" width="160" height="40" rx="6" fill="#f43f5e" opacity="0.1" stroke="#f43f5e" stroke-width="1" stroke-dasharray="4,3" />
-            <text x="480" y="272" text-anchor="middle" fill="#d1d5db" font-size="9">Routes to human designer</text>
-            <rect x="580" y="248" width="160" height="40" rx="6" fill="#22c55e" opacity="0.1" stroke="#22c55e" stroke-width="1" stroke-dasharray="4,3" />
-            <text x="660" y="272" text-anchor="middle" fill="#d1d5db" font-size="9">Human delivers via same chat</text>
-          </svg>
-        </div>
-      </section>
-
-      <!-- HUMAN-IN-LOOP -->
-      <section id="sec-hil" class="section-hidden">
-        <p class="text-slate-400 text-sm leading-relaxed mb-5">The Human-in-the-Loop system ensures users never hit a
-          dead end, while keeping the AI handling 80%+ of requests autonomously.</p>
-
-        <div class="space-y-3 mb-5">
-          <div class="rounded-xl p-4 border border-rose-500/15 bg-rose-500/[0.03] grid grid-cols-[200px_1fr_80px] gap-3 items-start">
-            <span class="text-rose-400 text-xs font-bold">Custom logo / graphic design</span>
-            <span class="text-slate-400 text-xs leading-relaxed">Route to freelance designer pool. User pays via UPI in-chat. Designer uploads assets, AI integrates automatically.</span>
-            <div class="text-right"><div class="text-[10px] text-green-400">AI: 10%</div><div class="text-[10px] text-rose-400">Human: 90%</div></div>
-          </div>
-          <div class="rounded-xl p-4 border border-rose-500/15 bg-rose-500/[0.03] grid grid-cols-[200px_1fr_80px] gap-3 items-start">
-            <span class="text-rose-400 text-xs font-bold">Domain purchase + DNS setup</span>
-            <span class="text-slate-400 text-xs leading-relaxed">AI walks user through domain selection. Purchase via UPI. DNS config done by backend automation, with human fallback for edge cases.</span>
-            <div class="text-right"><div class="text-[10px] text-green-400">AI: 70%</div><div class="text-[10px] text-rose-400">Human: 30%</div></div>
-          </div>
-          <div class="rounded-xl p-4 border border-rose-500/15 bg-rose-500/[0.03] grid grid-cols-[200px_1fr_80px] gap-3 items-start">
-            <span class="text-rose-400 text-xs font-bold">Complex layout requests</span>
-            <span class="text-slate-400 text-xs leading-relaxed">If AI can't match the request after 2 attempts, escalate to a human web designer who adjusts the template. AI learns from the fix.</span>
-            <div class="text-right"><div class="text-[10px] text-green-400">AI: 60%</div><div class="text-[10px] text-rose-400">Human: 40%</div></div>
-          </div>
-          <div class="rounded-xl p-4 border border-rose-500/15 bg-rose-500/[0.03] grid grid-cols-[200px_1fr_80px] gap-3 items-start">
-            <span class="text-rose-400 text-xs font-bold">Content writing (long-form)</span>
-            <span class="text-slate-400 text-xs leading-relaxed">AI generates first draft. If user is unsatisfied after revision, human copywriter refines. Delivered back through same chat.</span>
-            <div class="text-right"><div class="text-[10px] text-green-400">AI: 75%</div><div class="text-[10px] text-rose-400">Human: 25%</div></div>
-          </div>
-          <div class="rounded-xl p-4 border border-rose-500/15 bg-rose-500/[0.03] grid grid-cols-[200px_1fr_80px] gap-3 items-start">
-            <span class="text-rose-400 text-xs font-bold">Legal / compliance pages</span>
-            <span class="text-slate-400 text-xs leading-relaxed">Always human-reviewed. AI generates template privacy policy/terms, human legal advisor validates before publish.</span>
-            <div class="text-right"><div class="text-[10px] text-green-400">AI: 20%</div><div class="text-[10px] text-rose-400">Human: 80%</div></div>
-          </div>
-        </div>
-
-        <div class="rounded-xl p-4 border border-orange-500/20 bg-orange-500/[0.05]">
-          <h4 class="text-orange-400 text-xs font-bold mb-2">HIL QUEUE ARCHITECTURE</h4>
-          <p class="text-slate-400 text-xs leading-relaxed m-0">Every escalation creates a ticket with: user context,
-            conversation history, current site state, and specific request. Human operators see a dashboard (web-based,
-            not Telegram) with priority queue. They can respond through the same Telegram thread &mdash; the user never
-            leaves the chat. SLA: simple requests &lt;4hrs, design requests &lt;24hrs. The orchestrator tracks which tasks were
-            escalated and feeds this back to improve the AI over time.</p>
-        </div>
-      </section>
-
-      <!-- PAYMENTS -->
-      <section id="sec-payments" class="section-hidden">
-        <div class="grid md:grid-cols-2 gap-4 mb-4">
-          <div class="rounded-xl p-4 border border-violet-500/15 bg-violet-500/[0.04]">
-            <h4 class="text-violet-400 text-xs font-bold mb-3">PRICING MODEL</h4>
-            <div class="text-slate-400 text-xs leading-loose space-y-1">
-              <p class="m-0"><strong class="text-slate-300">Onboarding ₹9,999 (one-time):</strong> Professional website
-                built via WhatsApp, custom domain setup, live same day</p>
-              <p class="m-0"><strong class="text-slate-300">Maintenance ₹999/mo:</strong> Unlimited updates via chat,
-                new pages, photo swaps, improvements, proactive nudges</p>
-              <p class="m-0"><strong class="text-slate-300">~₹22K/year:</strong> Cheaper than any agency. Site stays
-                alive.</p>
-              <p class="m-0 mt-2"><strong class="text-slate-300">Add-on agents (future):</strong></p>
-              <p class="m-0">&bull; Booking Agent: ₹499/mo &bull; Review Agent: ₹499/mo &bull; Social Agent: ₹999/mo
-              </p>
-            </div>
-          </div>
-          <div class="rounded-xl p-4 border border-orange-500/15 bg-orange-500/[0.04]">
-            <h4 class="text-orange-400 text-xs font-bold mb-3">UPI INTEGRATION</h4>
-            <div class="text-slate-400 text-xs leading-loose space-y-1">
-              <p class="m-0"><strong class="text-slate-300">Onboarding:</strong> ₹9,999 UPI payment link sent in
-                WhatsApp &rarr; pay via GPay/PhonePe &rarr; site generation begins</p>
-              <p class="m-0"><strong class="text-slate-300">Monthly:</strong> UPI AutoPay mandate for ₹999/mo
-                (RBI compliant). Auto-debit, zero friction.</p>
-              <p class="m-0"><strong class="text-slate-300">Add-ons:</strong> "Add booking to my site" &rarr; payment
-                link &rarr; agent activated same day</p>
-              <p class="m-0"><strong class="text-slate-300">Webhook:</strong> Razorpay confirms &rarr; Bot updates
-                account &rarr; instant activation</p>
-            </div>
-          </div>
-        </div>
-        <div class="rounded-xl p-4 border border-green-500/15 bg-green-500/[0.04]">
-          <h4 class="text-green-400 text-xs font-bold mb-2">ONE-TIME PURCHASES (HIL Services)</h4>
-          <p class="text-slate-400 text-xs leading-relaxed m-0">Logo design (₹500-2000), custom illustrations
-            (₹300-1000), domain registration (at cost + ₹99 setup). All purchased via the same in-chat UPI flow. User
-            never leaves WhatsApp.</p>
-        </div>
-      </section>
-
-      <!-- EXPANSION -->
-      <section id="sec-expansion" class="section-hidden">
-        <p class="text-slate-400 text-sm leading-relaxed mb-4">The website builder is Agent #1. The real play is
-          becoming the operating system for small businesses &mdash; all through chat.</p>
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mb-4">
-          <div class="rounded-xl p-3.5 border border-green-500/15 bg-green-500/[0.03]">
-            <div class="flex justify-between items-center mb-2.5">
-              <span class="text-[11px] font-extrabold text-green-400">NOW</span>
-              <span class="text-[9px] font-semibold text-green-400 bg-green-500/10 px-2 py-0.5 rounded">Pilot</span>
-            </div>
-            <p class="text-slate-400 text-[11px] m-0 leading-relaxed">&rarr; Website Builder</p>
-            <p class="text-slate-400 text-[11px] m-0 leading-relaxed">&rarr; Domain Manager</p>
-          </div>
-          <div class="rounded-xl p-3.5 border border-orange-500/15 bg-orange-500/[0.03]">
-            <div class="flex justify-between items-center mb-2.5">
-              <span class="text-[11px] font-extrabold text-orange-400">6 MONTHS</span>
-              <span class="text-[9px] font-semibold text-orange-400 bg-orange-500/10 px-2 py-0.5 rounded">Build</span>
-            </div>
-            <p class="text-slate-400 text-[11px] m-0 leading-relaxed">&rarr; Google My Business</p>
-            <p class="text-slate-400 text-[11px] m-0 leading-relaxed">&rarr; Social Media Posts</p>
-            <p class="text-slate-400 text-[11px] m-0 leading-relaxed">&rarr; WhatsApp Catalog</p>
-          </div>
-          <div class="rounded-xl p-3.5 border border-violet-500/15 bg-violet-500/[0.03]">
-            <div class="flex justify-between items-center mb-2.5">
-              <span class="text-[11px] font-extrabold text-violet-400">12 MONTHS</span>
-              <span class="text-[9px] font-semibold text-violet-400 bg-violet-500/10 px-2 py-0.5 rounded">Plan</span>
-            </div>
-            <p class="text-slate-400 text-[11px] m-0 leading-relaxed">&rarr; Booking / Appointments</p>
-            <p class="text-slate-400 text-[11px] m-0 leading-relaxed">&rarr; Invoice &amp; Billing</p>
-            <p class="text-slate-400 text-[11px] m-0 leading-relaxed">&rarr; Review Management</p>
-          </div>
-          <div class="rounded-xl p-3.5 border border-cyan-500/15 bg-cyan-500/[0.03]">
-            <div class="flex justify-between items-center mb-2.5">
-              <span class="text-[11px] font-extrabold text-cyan-400">18 MONTHS</span>
-              <span class="text-[9px] font-semibold text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded">Vision</span>
-            </div>
-            <p class="text-slate-400 text-[11px] m-0 leading-relaxed">&rarr; Inventory Agent</p>
-            <p class="text-slate-400 text-[11px] m-0 leading-relaxed">&rarr; Hiring / Job Posts</p>
-            <p class="text-slate-400 text-[11px] m-0 leading-relaxed">&rarr; Customer CRM</p>
-          </div>
-          <div class="rounded-xl p-3.5 border border-rose-500/15 bg-rose-500/[0.03]">
-            <div class="flex justify-between items-center mb-2.5">
-              <span class="text-[11px] font-extrabold text-rose-400">24 MONTHS</span>
-              <span class="text-[9px] font-semibold text-rose-400 bg-rose-500/10 px-2 py-0.5 rounded">Vision</span>
-            </div>
-            <p class="text-slate-400 text-[11px] m-0 leading-relaxed">&rarr; Accounting / GST</p>
-            <p class="text-slate-400 text-[11px] m-0 leading-relaxed">&rarr; Marketing Campaigns</p>
-            <p class="text-slate-400 text-[11px] m-0 leading-relaxed">&rarr; Multi-location</p>
-          </div>
-          <div class="rounded-xl p-3.5 border border-yellow-500/15 bg-yellow-500/[0.03]">
-            <div class="flex justify-between items-center mb-2.5">
-              <span class="text-[11px] font-extrabold text-yellow-400">PLATFORM</span>
-              <span class="text-[9px] font-semibold text-yellow-400 bg-yellow-500/10 px-2 py-0.5 rounded">Dream</span>
-            </div>
-            <p class="text-slate-400 text-[11px] m-0 leading-relaxed">&rarr; 3rd Party Agents</p>
-            <p class="text-slate-400 text-[11px] m-0 leading-relaxed">&rarr; Agent Marketplace</p>
-            <p class="text-slate-400 text-[11px] m-0 leading-relaxed">&rarr; API for Developers</p>
-          </div>
-        </div>
-        <div class="rounded-xl p-4 border border-yellow-500/15 bg-yellow-500/[0.04]">
-          <h4 class="text-yellow-400 text-xs font-bold mb-2">PLATFORM ARCHITECTURE PRINCIPLE</h4>
-          <p class="text-slate-400 text-xs leading-relaxed m-0">Every agent follows the same pattern: conversational
-            interface &rarr; AI execution &rarr; preview/confirm &rarr; publish/execute &rarr; HIL fallback. The
-            orchestrator routes to the right agent. Users say "post on Instagram" just like they say "update my website"
-            &mdash; same chat, same trust, new capability.</p>
-        </div>
-      </section>
-
-      <!-- PILOT PLAN -->
-      <section id="sec-pilot" class="section-hidden">
-        <div class="grid md:grid-cols-2 gap-4 mb-4">
-          <div class="rounded-xl p-4 border border-green-500/15 bg-green-500/[0.04]">
-            <h4 class="text-green-400 text-xs font-bold mb-3">PILOT SCOPE (8 WEEKS)</h4>
-            <div class="text-slate-400 text-xs leading-loose space-y-1">
-              <p class="m-0"><strong class="text-slate-300">Users:</strong> 20-50 small businesses in Karnal / NCR</p>
-              <p class="m-0"><strong class="text-slate-300">Verticals:</strong> Doctors, tutors, local shops,
-                freelancers</p>
-              <p class="m-0"><strong class="text-slate-300">Channel:</strong> Telegram only (fast iteration)</p>
-              <p class="m-0"><strong class="text-slate-300">Features:</strong> Website gen, preview, publish, basic
-                edits</p>
-              <p class="m-0"><strong class="text-slate-300">Price:</strong> Free tier only (validate engagement first)
-              </p>
-            </div>
-          </div>
-          <div class="rounded-xl p-4 border border-orange-500/15 bg-orange-500/[0.04]">
-            <h4 class="text-orange-400 text-xs font-bold mb-3">PILOT METRICS</h4>
-            <div class="text-slate-400 text-xs leading-loose space-y-1">
-              <p class="m-0"><strong class="text-slate-300">Activation:</strong> % who complete website within first
-                session</p>
-              <p class="m-0"><strong class="text-slate-300">Quality:</strong> % who publish without HIL escalation</p>
-              <p class="m-0"><strong class="text-slate-300">Retention:</strong> % who make &ge;1 edit in week 2-4</p>
-              <p class="m-0"><strong class="text-slate-300">NPS:</strong> Would you recommend to another business?</p>
-              <p class="m-0"><strong class="text-slate-300">Conversion:</strong> % willing to pay ₹9,999 + ₹999/mo</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="rounded-xl p-4 border border-violet-500/15 bg-violet-500/[0.04] mb-4">
-          <h4 class="text-violet-400 text-xs font-bold mb-3">BUILD SEQUENCE (8 WEEKS)</h4>
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-2.5">
-            <div class="rounded-lg p-2.5 bg-white/[0.03]">
-              <div class="text-violet-400 text-[11px] font-extrabold mb-1.5">WK 1-2</div>
-              <p class="text-slate-500 text-[10px] leading-relaxed m-0">Telegram bot scaffold, template engine (3
-                templates), AI content generation pipeline</p>
-            </div>
-            <div class="rounded-lg p-2.5 bg-white/[0.03]">
-              <div class="text-violet-400 text-[11px] font-extrabold mb-1.5">WK 3-4</div>
-              <p class="text-slate-500 text-[10px] leading-relaxed m-0">Mini App preview, publish flow (Cloudflare
-                Pages), subdomain routing, basic edit commands</p>
-            </div>
-            <div class="rounded-lg p-2.5 bg-white/[0.03]">
-              <div class="text-violet-400 text-[11px] font-extrabold mb-1.5">WK 5-6</div>
-              <p class="text-slate-500 text-[10px] leading-relaxed m-0">HIL queue + operator dashboard, UPI payment
-                flow (Razorpay), custom domain setup</p>
-            </div>
-            <div class="rounded-lg p-2.5 bg-white/[0.03]">
-              <div class="text-violet-400 text-[11px] font-extrabold mb-1.5">WK 7-8</div>
-              <p class="text-slate-500 text-[10px] leading-relaxed m-0">Pilot launch, onboard 20 users, daily
-                iteration, collect feedback, fix critical bugs</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="rounded-xl p-4 border border-cyan-500/15 bg-cyan-500/[0.04]">
-          <h4 class="text-cyan-400 text-xs font-bold mb-2">TECH STACK</h4>
-          <p class="text-slate-400 text-xs leading-relaxed m-0">
-            <strong class="text-slate-300">Bot:</strong> Node.js + grammY (Telegram) &nbsp;|&nbsp;
-            <strong class="text-slate-300">AI:</strong> Claude API (orchestration + content gen) &nbsp;|&nbsp;
-            <strong class="text-slate-300">Sites:</strong> Static HTML on Cloudflare Pages &nbsp;|&nbsp;
-            <strong class="text-slate-300">DB:</strong> Supabase (Postgres + auth + realtime) &nbsp;|&nbsp;
-            <strong class="text-slate-300">Payments:</strong> Razorpay UPI &nbsp;|&nbsp;
-            <strong class="text-slate-300">Preview:</strong> Telegram Mini App (React) &nbsp;|&nbsp;
-            <strong class="text-slate-300">HIL Dashboard:</strong> Next.js internal tool
-          </p>
-        </div>
-      </section>
-
-      <!-- PLAYBOOK -->
-      <section id="sec-playbook" class="section-hidden">
-        <h2 class="text-lg font-bold text-slate-200 mb-2">Operational Playbook</h2>
-        <p class="text-slate-400 text-sm leading-relaxed mb-5">Step-by-step execution guide: scrape leads, identify
-          doctors without websites, generate personalized outreach, close deals, deliver a live website via WhatsApp.</p>
-
-        <!-- SCOUT: Lead Building -->
-        <h3 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-4">1. Build Lead List (SCOUT)</h3>
-        <div class="space-y-3 mb-6">
-          <div class="rounded-xl p-4 border border-green-500/15 bg-green-500/[0.03]">
-            <h4 class="text-green-400 text-xs font-bold mb-2">Source 1: Practo (Primary)</h4>
-            <p class="text-slate-500 text-xs leading-relaxed m-0 mb-2">India's largest healthcare directory. Structured
-              data on every dermatologist: name, clinic, fees, reviews, experience, qualifications, services, phone.</p>
-            <div class="rounded-lg p-3 bg-black/30 border border-white/5">
-              <p class="text-[11px] text-slate-500 m-0"><strong class="text-slate-400">Apify:</strong>
-                <code class="text-violet-400">apify.com/shahidirfan/practo-doctors-scraper</code> &mdash; Config:
-                speciality: "dermatologist", city: "[city]", results_wanted: 500. Run per city.</p>
-              <p class="text-[11px] text-slate-500 m-0 mt-1"><strong class="text-slate-400">Fallback:</strong> Custom
-                Selenium + BeautifulSoup script. Practo uses infinite scroll. Crawl profile pages for services, reviews,
-                website URLs.</p>
-            </div>
-          </div>
-
-          <div class="rounded-xl p-4 border border-orange-500/15 bg-orange-500/[0.03]">
-            <h4 class="text-orange-400 text-xs font-bold mb-2">Source 2: Google Maps / GBP</h4>
-            <p class="text-slate-500 text-xs leading-relaxed m-0 mb-2">Provides what Practo doesn't: actual website
-              URL, Google rating, review count, phone, business hours, photos.</p>
-            <div class="rounded-lg p-3 bg-black/30 border border-white/5">
-              <p class="text-[11px] text-slate-500 m-0"><strong class="text-slate-400">Outscraper</strong> (recommended)
-                or <strong class="text-slate-400">Omkarcloud</strong> (free, self-hosted via Docker). Run 3-5 query
-                variations per city: "dermatologist in [city]", "cosmetic dermatologist in [city]", "skin clinic in
-                [city]", "aesthetic clinic in [city]".</p>
-            </div>
-          </div>
-
-          <div class="rounded-xl p-4 border border-cyan-500/15 bg-cyan-500/[0.03]">
-            <h4 class="text-cyan-400 text-xs font-bold mb-2">Source 3: JustDial (Supplementary)</h4>
-            <p class="text-slate-500 text-xs leading-relaxed m-0">Has phone numbers and catches smaller clinics. More
-              challenging to scrape (CAPTCHAs). Use manually (10-15 min per city) or buy JustDial lead packs directly.
-            </p>
-          </div>
-
-          <div class="rounded-xl p-4 border border-violet-500/15 bg-violet-500/[0.03]">
-            <h4 class="text-violet-400 text-xs font-bold mb-2">Merge &amp; Deduplicate</h4>
-            <p class="text-slate-500 text-xs leading-relaxed m-0">Load all CSVs into Pandas. Normalize names. Fuzzy
-              match on doctor_name + city (fuzzywuzzy, threshold 85%). Prefer Google Maps for website_url and phone;
-              Practo for qualifications and services. Output: <code
-                class="text-violet-400">master_dermatologists.csv</code> with 2,000-5,000 unique records.</p>
-          </div>
-        </div>
-
-        <!-- AUDIT -->
-        <h3 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-4">2. Website Audit</h3>
-        <div class="grid md:grid-cols-2 gap-3 mb-6">
-          <div class="rounded-xl p-4 border border-white/5 bg-white/[0.02]">
-            <h4 class="text-orange-400 text-xs font-bold mb-2">Has Website? (Primary Filter)</h4>
-            <div class="text-slate-500 text-xs leading-relaxed space-y-1">
-              <p class="m-0">From merged data, categorize every doctor:</p>
-              <p class="m-0"><span class="text-rose-400">&cross;</span> <strong class="text-slate-400">No
-                  website</strong> (40-60% of list) &mdash; PRIMARY targets</p>
-              <p class="m-0"><span class="text-orange-400">&bull;</span> <strong class="text-slate-400">Outdated/broken
-                  website</strong> &mdash; secondary targets</p>
-              <p class="m-0"><span class="text-green-400">&check;</span> <strong class="text-slate-400">Good
-                  website</strong> &mdash; skip (not our customer)</p>
-            </div>
-          </div>
-          <div class="rounded-xl p-4 border border-white/5 bg-white/[0.02]">
-            <h4 class="text-cyan-400 text-xs font-bold mb-2">Website Quality Check</h4>
-            <div class="text-slate-500 text-xs leading-relaxed space-y-1">
-              <p class="m-0">For doctors WITH a website, quick automated check:</p>
-              <p class="m-0">&bull; Mobile-friendly? (viewport meta, responsive)</p>
-              <p class="m-0">&bull; Load time on mobile? (PageSpeed API, free)</p>
-              <p class="m-0">&bull; Last updated when? (copyright year, blog dates)</p>
-              <p class="m-0">&bull; Looks professional? (screenshot comparison)</p>
-            </div>
-          </div>
-          <div class="rounded-xl p-4 border border-white/5 bg-white/[0.02]">
-            <h4 class="text-green-400 text-xs font-bold mb-2">Google Maps Presence</h4>
-            <div class="text-slate-500 text-xs leading-relaxed space-y-1">
-              <p class="m-0">From Google Maps scrape data:</p>
-              <p class="m-0">&bull; Has GBP listing? Is website URL linked?</p>
-              <p class="m-0">&bull; Google rating and review count</p>
-              <p class="m-0">&bull; Photos uploaded? Business hours complete?</p>
-              <p class="m-0">&bull; "No website" + good reviews = ideal target</p>
-            </div>
-          </div>
-          <div class="rounded-xl p-4 border border-white/5 bg-white/[0.02]">
-            <h4 class="text-rose-400 text-xs font-bold mb-2">Competitor Comparison</h4>
-            <p class="text-slate-500 text-xs leading-relaxed m-0">Per city: how many top dermatologists have websites?
-              This creates urgency: <em>"Dr. Sharma, 3 of the top 5 dermatologists in Jaipur have professional websites.
-                You don't. When patients Google 'dermatologist in Jaipur', you're invisible."</em></p>
-          </div>
-        </div>
-
-        <!-- OUTREACH -->
-        <h3 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-4">3. Outreach Sequences</h3>
-
-        <div class="grid md:grid-cols-2 gap-3 mb-4">
-          <div class="rounded-xl p-4 border border-green-500/15 bg-green-500/[0.03]">
-            <h4 class="text-green-400 text-xs font-bold mb-2">Channel Strategy</h4>
-            <div class="text-slate-500 text-xs leading-relaxed space-y-1">
-              <p class="m-0"><strong class="text-slate-300">WhatsApp (primary):</strong> 8-12% response. Indian doctors
-                live on WhatsApp. Use Interakt/Wati/AiSensy.</p>
-              <p class="m-0"><strong class="text-slate-300">Cold Call:</strong> 15-20% (warm). Day 7 follow-up for
-                high-value non-responders.</p>
-              <p class="m-0"><strong class="text-slate-300">Email:</strong> 2-4%. Secondary, only if email available.
-              </p>
-              <p class="m-0"><strong class="text-slate-300">Instagram DM:</strong> 5-8%. Many cosmetic derms are
-                Instagram-heavy.</p>
-            </div>
-          </div>
-          <div class="rounded-xl p-4 border border-orange-500/15 bg-orange-500/[0.03]">
-            <h4 class="text-orange-400 text-xs font-bold mb-2">Sequence Timeline</h4>
-            <div class="text-slate-500 text-xs leading-relaxed space-y-1">
-              <p class="m-0"><strong class="text-slate-300">Day 0:</strong> WhatsApp &mdash; no-website or bad-website
-                hook</p>
-              <p class="m-0"><strong class="text-slate-300">Day 2:</strong> Follow-up with competitor comparison</p>
-              <p class="m-0"><strong class="text-slate-300">Day 4:</strong> Chain threat angle (Tier 2) or sample site
-                link</p>
-              <p class="m-0"><strong class="text-slate-300">Day 7:</strong> Cold call (high-priority: no website, Tier
-                2)</p>
-              <p class="m-0"><strong class="text-slate-300">Day 14:</strong> Case study follow-up</p>
-              <p class="m-0"><strong class="text-slate-300">Day 21+:</strong> Nurture list (monthly value content drip)
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Message Templates -->
-        <div class="space-y-3 mb-6">
-          <div class="rounded-xl p-4 border border-green-500/15 bg-green-500/[0.03]">
-            <h4 class="text-green-400 text-xs font-bold mb-2">Template 1: No Website (Primary &mdash; 40-60% of list)
-            </h4>
-            <div class="rounded-lg p-3 bg-black/30 border border-white/5">
-              <p class="text-[11px] text-slate-400 leading-relaxed m-0 whitespace-pre-line">Hi Dr. [Name],
-I was looking for dermatologists in [City] and found [Clinic Name] on Practo with great reviews ([X] rating). But when I searched on Google &mdash; you don't have a website.
-80% of patients Google their doctor before booking. Right now, when someone searches "dermatologist in [City]", [Competitor Name] shows up with a professional website. You don't.
-We build professional websites for dermatologists through WhatsApp. You answer 5 questions, we deliver a live website the same day. ₹9,999 setup + ₹999/month to keep it updated.
-Want me to show you a sample site we built for a clinic like yours?</p>
-            </div>
-          </div>
-
-          <div class="rounded-xl p-4 border border-orange-500/15 bg-orange-500/[0.03]">
-            <h4 class="text-orange-400 text-xs font-bold mb-2">Template 2: Bad/Outdated Website</h4>
-            <div class="rounded-lg p-3 bg-black/30 border border-white/5">
-              <p class="text-[11px] text-slate-400 leading-relaxed m-0 whitespace-pre-line">Hi Dr. [Name],
-I came across [Clinic Name]'s website. A few things I noticed:
-&cross; Takes [X] seconds to load on mobile (patients leave after 3s)
-&cross; Not mobile-friendly (most patients search from their phone)
-&cross; Last updated [year/never] &mdash; services and info may be outdated
-Your Practo reviews are strong ([X] rating) but your website isn't matching that reputation.
-We replace outdated websites for dermatologists &mdash; entirely through WhatsApp. You tell us about your clinic, we deliver a professional site the same day. ₹9,999 one-time + ₹999/month for updates.
-Shall I show you what a fresh site for [Clinic Name] could look like?</p>
-            </div>
-          </div>
-
-          <div class="rounded-xl p-4 border border-rose-500/15 bg-rose-500/[0.03]">
-            <h4 class="text-rose-400 text-xs font-bold mb-2">Template 3: Chain Threat (Tier 2 Cities)</h4>
-            <div class="rounded-lg p-3 bg-black/30 border border-white/5">
-              <p class="text-[11px] text-slate-400 leading-relaxed m-0 whitespace-pre-line">Hi Dr. [Name],
-Kaya Skin Clinic / Oliva Clinics just opened a new branch in [City/Area]. They have professional websites, online booking, and show up first when patients search "dermatologist in [City]."
-[Clinic Name] doesn't have a website [/ has an outdated website]. When patients compare &mdash; the chains look more credible.
-We help independent dermatologists get a professional website up in one day through WhatsApp. No agencies, no waiting weeks.
-Interested in a 5-min call?</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Cold Call Script -->
-        <h3 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-4">4. Cold Call Script</h3>
-        <div class="rounded-xl p-4 border border-white/5 bg-white/[0.02] mb-6">
-          <div class="space-y-3 text-xs text-slate-400 leading-relaxed">
-            <div>
-              <p class="text-slate-300 font-bold text-[11px] m-0 mb-1">OPENING (15s)</p>
-              <p class="m-0 italic">"Hi Dr. [Name], this is [You] from [Company]. I sent you a digital health report for
-                [Clinic Name] on WhatsApp a few days ago &mdash; did you get a chance to look at it?"</p>
-            </div>
-            <div>
-              <p class="text-slate-300 font-bold text-[11px] m-0 mb-1">PITCH (60s)</p>
-              <p class="m-0 italic">"I noticed [Clinic Name] doesn't have a website [/ has a website that's outdated].
-                80% of patients Google their doctor before booking. [Competitor] in [City] has a professional site and
-                shows up first. When patients compare, you're invisible [/ looking less credible]."</p>
-            </div>
-            <div>
-              <p class="text-slate-300 font-bold text-[11px] m-0 mb-1">CLOSE (30s)</p>
-              <p class="m-0 italic">"We build professional websites for dermatologists through WhatsApp. You answer 5
-                questions, we deliver a live site the same day. ₹9,999 one-time, ₹999/month to keep it updated.
-                Cheaper than any agency, and the site actually stays alive. Can I show you a sample?"</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Objection Handling -->
-        <h3 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-4">5. Objection Handling</h3>
-        <div class="space-y-2 mb-6">
-          <div class="rounded-lg p-3 border border-white/5 bg-white/[0.02] grid grid-cols-[140px_1fr] gap-3">
-            <span class="text-rose-400 text-[11px] font-bold">"I have a website"</span>
-            <span class="text-slate-500 text-[11px]">Great &mdash; but when was it last updated? Does it load fast on
-              mobile? We can replace it with a modern site in one day, and you can update it anytime by just messaging us
-              on WhatsApp.</span>
-          </div>
-          <div class="rounded-lg p-3 border border-white/5 bg-white/[0.02] grid grid-cols-[140px_1fr] gap-3">
-            <span class="text-rose-400 text-[11px] font-bold">"I get patients from Practo"</span>
-            <span class="text-slate-500 text-[11px]">Practo charges 10-15% per lead. Patients who find you on Google
-              directly don't cost that commission. Your own website builds an organic pipeline. And it's your brand, not
-              Practo's.</span>
-          </div>
-          <div class="rounded-lg p-3 border border-white/5 bg-white/[0.02] grid grid-cols-[140px_1fr] gap-3">
-            <span class="text-rose-400 text-[11px] font-bold">"Too expensive"</span>
-            <span class="text-slate-500 text-[11px]">₹22K for the full year &mdash; agencies charge ₹30-50K for just
-              the build and then disappear. If this brings even 2 extra patients/month at ₹1,000+ per consultation, it
-              pays for itself in month 1.</span>
-          </div>
-          <div class="rounded-lg p-3 border border-white/5 bg-white/[0.02] grid grid-cols-[140px_1fr] gap-3">
-            <span class="text-rose-400 text-[11px] font-bold">"Don't need a website"</span>
-            <span class="text-slate-500 text-[11px]">Your patients Google you before booking. Without a website, they
-              see your competitors first. A website is your digital visiting card &mdash; it's how new patients decide
-              you're legit.</span>
-          </div>
-        </div>
-
-        <!-- Onboarding -->
-        <h3 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-4">6. Onboarding &amp; Week 1
-          Delivery</h3>
-        <div class="rounded-xl p-4 border border-green-500/15 bg-green-500/[0.03] mb-4">
-          <h4 class="text-green-400 text-xs font-bold mb-2">Onboarding via WhatsApp (5 minutes)</h4>
-          <div class="text-slate-500 text-xs leading-relaxed space-y-1">
-            <p class="m-0">&bull; Bot asks 5 questions: clinic name, doctor name + qualifications, services offered,
-              clinic photos (sent on WhatsApp), color/vibe preference ("premium", "friendly", "clinical")</p>
-            <p class="m-0">&bull; Voice notes accepted &mdash; transcribed automatically. Photos of the clinic work as
-              input.</p>
-            <p class="m-0">&bull; AI picks vertical-specific template (dermatologist), fills all content, generates
-              site</p>
-            <p class="m-0">&bull; Payment: ₹9,999 via UPI link sent in same chat</p>
-          </div>
-        </div>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-2 mb-6">
-          <div class="rounded-lg p-3 bg-green-500/[0.05] border border-green-500/10 text-center">
-            <p class="text-green-400 text-[11px] font-extrabold m-0">MINUTE 0-5</p>
-            <p class="text-slate-500 text-[10px] m-0 mt-1">Doctor answers<br>5 questions on WA</p>
-          </div>
-          <div class="rounded-lg p-3 bg-violet-500/[0.05] border border-violet-500/10 text-center">
-            <p class="text-violet-400 text-[11px] font-extrabold m-0">MINUTE 5-6</p>
-            <p class="text-slate-500 text-[10px] m-0 mt-1">AI generates site<br>(30-60 seconds)</p>
-          </div>
-          <div class="rounded-lg p-3 bg-cyan-500/[0.05] border border-cyan-500/10 text-center">
-            <p class="text-cyan-400 text-[11px] font-extrabold m-0">MINUTE 6-10</p>
-            <p class="text-slate-500 text-[10px] m-0 mt-1">Preview link on WA<br>Doctor reviews</p>
-          </div>
-          <div class="rounded-lg p-3 bg-rose-500/[0.05] border border-rose-500/10 text-center">
-            <p class="text-rose-400 text-[11px] font-extrabold m-0">MINUTE 10</p>
-            <p class="text-slate-500 text-[10px] m-0 mt-1">Approve &rarr; publish<br>Site is LIVE</p>
-          </div>
-        </div>
-
-        <!-- Monthly Ops -->
-        <h3 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-4">7. Ongoing Maintenance (₹999/mo)
-        </h3>
-        <p class="text-slate-500 text-xs mb-3">Maintenance is chat-driven, not calendar-driven. AI handles 90%+ of
-          requests automatically. One operator can manage 100+ accounts.</p>
-        <div class="grid md:grid-cols-2 gap-3 mb-6">
-          <div class="rounded-xl p-4 border border-green-500/15 bg-green-500/[0.03]">
-            <h4 class="text-green-400 text-xs font-bold mb-2">Doctor-Initiated (Reactive)</h4>
-            <div class="text-slate-500 text-xs leading-relaxed space-y-1">
-              <p class="m-0">&bull; "Add teeth whitening to services &mdash; ₹3000"</p>
-              <p class="m-0">&bull; "Change Monday timing to 10am-6pm"</p>
-              <p class="m-0">&bull; "Upload this new photo to gallery"</p>
-              <p class="m-0">&bull; "Change my phone number to 98xxx"</p>
-              <p class="m-0">AI makes change &rarr; shows preview &rarr; publishes on approval</p>
-            </div>
-          </div>
-          <div class="rounded-xl p-4 border border-orange-500/15 bg-orange-500/[0.03]">
-            <h4 class="text-orange-400 text-xs font-bold mb-2">Proactive Nudges (AI-Initiated)</h4>
-            <div class="text-slate-500 text-xs leading-relaxed space-y-1">
-              <p class="m-0">&bull; "You haven't updated your site in 2 months. Want to add new photos?"</p>
-              <p class="m-0">&bull; "Summer is coming &mdash; want to add a section about sun protection treatments?"</p>
-              <p class="m-0">&bull; "Your copyright year says 2024. Should I update to 2026?"</p>
-              <p class="m-0">&bull; "3 competitors in [City] added online booking. Want to add it too?" (upsell)</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Upsell Path -->
-        <h3 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-4">8. Upsell Path (Future Agents)
-        </h3>
-        <div class="rounded-xl p-4 border border-violet-500/15 bg-violet-500/[0.03] mb-4">
-          <p class="text-slate-400 text-xs leading-relaxed m-0 mb-3">Once the doctor trusts the WhatsApp relationship
-            (month 2-3), the website becomes the foundation for upselling additional agents:</p>
-          <div class="grid md:grid-cols-3 gap-2">
-            <div class="rounded-lg p-2.5 bg-black/20">
-              <p class="text-violet-400 text-[10px] font-bold m-0">Booking Agent &bull; ₹499/mo</p>
-              <p class="text-slate-500 text-[10px] m-0">"Can patients book through my site?"</p>
-            </div>
-            <div class="rounded-lg p-2.5 bg-black/20">
-              <p class="text-orange-400 text-[10px] font-bold m-0">Review Agent &bull; ₹499/mo</p>
-              <p class="text-slate-500 text-[10px] m-0">"Can you help me get more Google reviews?"</p>
-            </div>
-            <div class="rounded-lg p-2.5 bg-black/20">
-              <p class="text-cyan-400 text-[10px] font-bold m-0">Social Agent &bull; ₹999/mo</p>
-              <p class="text-slate-500 text-[10px] m-0">"Post something on Instagram for me"</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tooling Stack -->
-        <h3 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-4">9. Tooling Stack</h3>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-2 mb-6">
-          <div class="rounded-lg p-3 bg-white/[0.02] border border-white/5">
-            <p class="text-green-400 text-[10px] font-bold m-0">Lead Scraping</p>
-            <p class="text-slate-500 text-[10px] m-0">Apify + Outscraper</p>
-            <p class="text-slate-600 text-[9px] m-0">~₹5,000/mo</p>
-          </div>
-          <div class="rounded-lg p-3 bg-white/[0.02] border border-white/5">
-            <p class="text-violet-400 text-[10px] font-bold m-0">Website Gen</p>
-            <p class="text-slate-500 text-[10px] m-0">Claude API + Cloudflare Pages</p>
-            <p class="text-slate-600 text-[9px] m-0">~₹100/site</p>
-          </div>
-          <div class="rounded-lg p-3 bg-white/[0.02] border border-white/5">
-            <p class="text-orange-400 text-[10px] font-bold m-0">WhatsApp Outreach</p>
-            <p class="text-slate-500 text-[10px] m-0">Interakt / Wati / AiSensy</p>
-            <p class="text-slate-600 text-[9px] m-0">~₹3,000/mo</p>
-          </div>
-          <div class="rounded-lg p-3 bg-white/[0.02] border border-white/5">
-            <p class="text-cyan-400 text-[10px] font-bold m-0">Template Engine</p>
-            <p class="text-slate-500 text-[10px] m-0">Next.js/Astro + Tailwind</p>
-            <p class="text-slate-600 text-[9px] m-0">~₹0 (static)</p>
-          </div>
-          <div class="rounded-lg p-3 bg-white/[0.02] border border-white/5">
-            <p class="text-rose-400 text-[10px] font-bold m-0">Hosting</p>
-            <p class="text-slate-500 text-[10px] m-0">Cloudflare Pages (CDN)</p>
-            <p class="text-slate-600 text-[9px] m-0">Free</p>
-          </div>
-          <div class="rounded-lg p-3 bg-white/[0.02] border border-white/5">
-            <p class="text-yellow-400 text-[10px] font-bold m-0">Database</p>
-            <p class="text-slate-500 text-[10px] m-0">Supabase (Postgres)</p>
-            <p class="text-slate-600 text-[9px] m-0">Free tier</p>
-          </div>
-          <div class="rounded-lg p-3 bg-white/[0.02] border border-white/5">
-            <p class="text-green-400 text-[10px] font-bold m-0">Payments</p>
-            <p class="text-slate-500 text-[10px] m-0">Razorpay UPI</p>
-            <p class="text-slate-600 text-[9px] m-0">2% per txn</p>
-          </div>
-          <div class="rounded-lg p-3 bg-white/[0.02] border border-white/5">
-            <p class="text-violet-400 text-[10px] font-bold m-0">CRM</p>
-            <p class="text-slate-500 text-[10px] m-0">Google Sheets &rarr; HubSpot</p>
-            <p class="text-slate-600 text-[9px] m-0">Free &rarr; ₹5K/mo</p>
-          </div>
-        </div>
-
-        <!-- Funnel Targets -->
-        <h3 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-4">10. Funnel Targets (First 90
-          Days)</h3>
-        <div class="rounded-xl p-5 border border-cyan-500/15 bg-cyan-500/[0.03] mb-4">
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-            <div>
-              <p class="text-2xl font-extrabold text-slate-200 m-0">3,000+</p>
-              <p class="text-[10px] text-slate-500 m-0">Dermatologists in database</p>
-            </div>
-            <div>
-              <p class="text-2xl font-extrabold text-slate-200 m-0">500/wk</p>
-              <p class="text-[10px] text-slate-500 m-0">WhatsApp messages sent</p>
-            </div>
-            <div>
-              <p class="text-2xl font-extrabold text-slate-200 m-0">8-12/wk</p>
-              <p class="text-[10px] text-slate-500 m-0">Websites delivered per week</p>
-            </div>
-            <div>
-              <p class="text-2xl font-extrabold text-slate-200 m-0">100-150</p>
-              <p class="text-[10px] text-slate-500 m-0">Live websites by Month 3</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Risk Mitigation -->
-        <h3 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-4">11. Risk Mitigation</h3>
-        <div class="space-y-2">
-          <div class="rounded-lg p-3 border border-white/5 bg-white/[0.02] grid grid-cols-[160px_1fr] gap-3">
-            <span class="text-rose-400 text-[11px] font-bold">Low WhatsApp response</span>
-            <span class="text-slate-500 text-[11px]">A/B test variants. Add cold calling + Instagram DMs. First 100
-              messages calibrate.</span>
-          </div>
-          <div class="rounded-lg p-3 border border-white/5 bg-white/[0.02] grid grid-cols-[160px_1fr] gap-3">
-            <span class="text-rose-400 text-[11px] font-bold">Low conversion</span>
-            <span class="text-slate-500 text-[11px]">First month free for first 20 customers. Build case studies. Social
-              proof accelerates later sales.</span>
-          </div>
-          <div class="rounded-lg p-3 border border-white/5 bg-white/[0.02] grid grid-cols-[160px_1fr] gap-3">
-            <span class="text-rose-400 text-[11px] font-bold">Medical accuracy</span>
-            <span class="text-slate-500 text-[11px]">Part-time MBBS/MD freelancer for content QA (~₹15-20K/mo). All
-              medical content human-reviewed.</span>
-          </div>
-          <div class="rounded-lg p-3 border border-white/5 bg-white/[0.02] grid grid-cols-[160px_1fr] gap-3">
-            <span class="text-rose-400 text-[11px] font-bold">Churn after Month 1</span>
-            <span class="text-slate-500 text-[11px]">Show results in Week 1 (speed is key). Monthly reports. Human
-              check-in creates stickiness. 4+ products = 80% retention.</span>
-          </div>
-          <div class="rounded-lg p-3 border border-white/5 bg-white/[0.02] grid grid-cols-[160px_1fr] gap-3">
-            <span class="text-rose-400 text-[11px] font-bold">Scraping blocked</span>
-            <span class="text-slate-500 text-[11px]">Rotating proxies. Apify handles this. JustDial + manual backup.
-              Once list is built, growth is referrals + organic.</span>
-          </div>
-        </div>
-      </section>
-
-    </div>
-  </main>
-
-  <script>
-    function showSection(id) {
-      // Hide all sections
-      document.querySelectorAll('main section').forEach(function(s) {
-        s.classList.remove('section-visible');
-        s.classList.add('section-hidden');
-      });
-      // Show target
-      var target = document.getElementById('sec-' + id);
-      if (target) {
-        target.classList.remove('section-hidden');
-        target.classList.add('section-visible');
-      }
-      // Update tabs
-      document.querySelectorAll('#tabs button').forEach(function(btn) {
-        if (btn.getAttribute('data-tab') === id) {
-          btn.className = btn.className.replace('tab-inactive', 'tab-active');
-        } else {
-          btn.className = btn.className.replace('tab-active', 'tab-inactive');
-        }
-      });
-    }
-  </script>
-
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+    </script>
 </body>
-
 </html>

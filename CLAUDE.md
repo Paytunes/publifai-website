@@ -8,17 +8,21 @@
 
 - **HTML5** with semantic elements
 - **Tailwind CSS** via CDN (`https://cdn.tailwindcss.com`) — no local install
-- **Inter font** from Google Fonts (400, 500, 600, 700)
+- **DM Sans** from Google Fonts (400, 500, 600, 700)
 - **No build step** — edit HTML files directly, open in browser to preview
 - Vanilla JS only where needed (no frameworks)
 
 ## Structure
 
 ```
-index.html          ← Main 1-pager landing page (to be created)
-pilot-1pager.html   ← Existing pilot offer page (₹5K setup + ₹500/mo for SMBs)
-home.jsx            ← Original React component (reference only, not used)
-Kamai.md            ← Full vision document and product spec (source of truth)
+index.html                ← Vision / company landing page (kamai.company)
+pilot.html                ← Pilot offer page (₹4,999 setup + ₹499/mo) — linked from index
+pilot-1pager.html         ← Old pilot 1-pager (reference, superseded by pilot.html)
+internal-product-doc.html ← Internal product doc (noindex, not linked — team-only via direct URL)
+home.jsx                  ← Original React component (reference only, not used)
+Kamai.md                  ← Full vision document and product spec (source of truth)
+kam_ai_compressed.docx.pdf ← Master launch document (strategy + GTM playbook)
+DESIGN.md                 ← Design system (source of truth for all visual decisions)
 ```
 
 ## Key Product Details
@@ -27,14 +31,14 @@ Kamai.md            ← Full vision document and product spec (source of truth)
 - **Core thesis:** Every small business operation that requires a separate app can be a conversation
 - **First product:** Website Agent — build & maintain a professional website entirely through WhatsApp/Telegram chat
 - **Pricing:** Free tier (subdomain, 3 pages) → Starter ₹199/mo → Pro ₹499/mo → Business ₹999/mo
-- **Pilot pricing (inaugural):** ₹5,000 one-time setup + ₹500/mo (normally ₹12K + ₹1K/mo)
+- **Pilot pricing (inaugural):** ₹4,999 one-time setup + ₹499/mo (normally ₹12K + ₹1,200/mo)
 - **Tech stack:** Node.js + grammY, Claude API, Cloudflare Pages, Supabase, Razorpay UPI
 - **Pilot:** 20-50 businesses in Karnal/NCR
 
 ## Team
 
 - **Shashank Singla** — Founder (Product/Strategy/Engineering), runs HCode Technologies
-- **Varun Garg** — Co-founder (Business, Part-time), ex-upGrad President, IIT Delhi + IIM Calcutta
+- **Gaurav Tiwari** — Co-founder, CEO of PayTunes (digital advertising platform)
 - **Swastik Sharma** — Developer (Full-time), IIT Roorkee, AI pipeline experience
 - **Aditi Sharma** — Developer, manages Paytunes websites (the manual version of what Kam+AI automates)
 
@@ -43,7 +47,13 @@ Kamai.md            ← Full vision document and product spec (source of truth)
 - All styling via Tailwind utility classes or inline `<style>` blocks
 - Mobile-first responsive design
 - Green brand palette (#1a6b4a primary, #2d9d6a accent, #25D366 WhatsApp CTA)
-- Content sourced from `Kamai.md` (source of truth)
+- Content sourced from `Kamai.md` and `kam_ai_compressed.docx.pdf` (sources of truth)
+
+## Design System
+Always read DESIGN.md before making any visual or UI decisions.
+All font choices, colors, spacing, and aesthetic direction are defined there.
+Do not deviate without explicit user approval.
+In QA mode, flag any code that doesn't match DESIGN.md.
 
 ## gstack
 
