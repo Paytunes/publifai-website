@@ -24,6 +24,26 @@
             }
         }
     </script>
+    <script>
+        // Geo-based pricing: detect if visitor is outside India
+        async function detectCountryAndSetPricing() {
+            try {
+                const resp = await fetch('https://ipapi.co/country/', { signal: AbortSignal.timeout(3000) });
+                const country = (await resp.text()).trim();
+                if (country && country !== 'IN') {
+                    applyInternationalPricing();
+                }
+            } catch (e) {
+                // On error, default to Indian pricing (₹)
+            }
+        }
+        function applyInternationalPricing() {
+            // Update Year 1 cost in comparison table
+            const y1cost = document.getElementById('year1-cost');
+            if (y1cost) y1cost.textContent = '~$427';
+        }
+        document.addEventListener('DOMContentLoaded', detectCountryAndSetPricing);
+    </script>
     <style>
         html { scroll-behavior: smooth; }
         .gradient-text {
@@ -359,7 +379,7 @@
                         </tr>
                         <tr class="border-b border-gray-100">
                             <td class="py-3.5 pr-4 font-medium text-gray-900">Year 1 cost</td>
-                            <td class="py-3.5 px-4 text-center bg-green-50/30 font-medium text-brand">~₹11K</td>
+                            <td id="year1-cost" class="py-3.5 px-4 text-center bg-green-50/30 font-medium text-brand">~₹11K</td>
                             <td class="py-3.5 px-4 text-center">₹15K-40K+</td>
                             <td class="py-3.5 px-4 text-center">₹2.4K-18K</td>
                         </tr>
