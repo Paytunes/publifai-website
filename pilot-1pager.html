@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kam.ai — What's Included</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8fafb;
+            color: #1a2b3c;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .page {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 40px 24px 60px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 36px;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1a6b4a;
+            letter-spacing: -0.5px;
+        }
+        .logo span { color: #2d9d6a; }
+        .tagline {
+            font-size: 14px;
+            color: #64748b;
+            margin-top: 4px;
+        }
+
+        /* Launch badge */
+        .launch-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+            border: 1px solid #bbf7d0;
+            color: #166534;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 6px 16px;
+            border-radius: 20px;
+            margin-top: 12px;
+        }
+
+        /* Hero pitch */
+        .hero {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 28px 24px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        .hero h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 8px;
+            line-height: 1.35;
+        }
+        .hero p {
+            font-size: 15px;
+            color: #475569;
+        }
+
+        /* Section cards */
+        .card {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 16px;
+        }
+        .card-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .card-title .icon {
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        /* Checklist items */
+        .checklist {
+            list-style: none;
+        }
+        .checklist li {
+            position: relative;
+            padding: 6px 0 6px 28px;
+            font-size: 14px;
+            color: #334155;
+        }
+        .checklist li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            top: 6px;
+            width: 20px;
+            height: 20px;
+            background: #f0fdf4;
+            color: #16a34a;
+            font-size: 12px;
+            font-weight: 700;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+            text-align: center;
+        }
+        .checklist li .sub {
+            display: block;
+            font-size: 12.5px;
+            color: #64748b;
+            margin-top: 1px;
+        }
+
+        /* Exclusion items */
+        .exclusion-list {
+            list-style: none;
+        }
+        .exclusion-list li {
+            position: relative;
+            padding: 5px 0 5px 28px;
+            font-size: 14px;
+            color: #64748b;
+        }
+        .exclusion-list li::before {
+            content: '—';
+            position: absolute;
+            left: 4px;
+            color: #cbd5e1;
+            font-weight: 700;
+        }
+
+        /* Pricing */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+        .price-box {
+            background: #f8fafb;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 16px;
+            text-align: center;
+        }
+        .price-box.highlight {
+            background: linear-gradient(135deg, #f0fdf4, #ecfdf5);
+            border-color: #86efac;
+        }
+        .price-label {
+            font-size: 12px;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+        .price-amount {
+            font-size: 26px;
+            font-weight: 700;
+            color: #0f172a;
+            margin: 4px 0 2px;
+        }
+        .price-amount .currency { font-size: 16px; }
+        .price-note {
+            font-size: 12px;
+            color: #64748b;
+        }
+        .price-original {
+            font-size: 13px;
+            color: #94a3b8;
+            text-decoration: line-through;
+            margin-top: 2px;
+        }
+
+        /* How it works */
+        .steps {
+            counter-reset: step;
+        }
+        .step {
+            position: relative;
+            padding: 8px 0 8px 40px;
+            font-size: 14px;
+            color: #334155;
+        }
+        .step::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 26px;
+            height: 26px;
+            background: #1a6b4a;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 700;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .step strong {
+            color: #0f172a;
+        }
+
+        /* Separator */
+        .divider {
+            height: 1px;
+            background: #e2e8f0;
+            margin: 12px 0;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 32px;
+            padding: 20px;
+            color: #94a3b8;
+            font-size: 12px;
+        }
+        .footer a {
+            color: #1a6b4a;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* CTA */
+        .cta {
+            display: block;
+            width: 100%;
+            background: #25D366;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            text-align: center;
+            text-decoration: none;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .cta:hover { background: #1fb855; }
+        .cta-note {
+            text-align: center;
+            font-size: 12px;
+            color: #94a3b8;
+            margin-top: 8px;
+        }
+
+        @media (max-width: 480px) {
+            .page { padding: 24px 16px 48px; }
+            .pricing-grid { grid-template-columns: 1fr; }
+            .hero h2 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">Kam<span>.ai</span></div>
+            <div class="tagline">Professional Websites for Local Businesses</div>
+            <div class="launch-badge">🚀 Inaugural Offer — Limited Slots</div>
+        </div>
+
+        <!-- Hero -->
+        <div class="hero">
+            <h2>A professional website for your business.<br>We build it. You just chat.</h2>
+            <p>Share your business details on WhatsApp — we handle everything else. Domain, design, hosting, Google visibility. Done.</p>
+        </div>
+
+        <!-- How It Works -->
+        <div class="card">
+            <div class="card-title"><span class="icon">💬</span> How It Works</div>
+            <div class="steps">
+                <div class="step"><strong>Chat with us on WhatsApp.</strong> Tell us about your business — name, services, prices, photos. In Hindi, English, whatever you prefer.</div>
+                <div class="step"><strong>We build your website.</strong> Professional English website with a Hindi version. Mobile-friendly, shows up on Google. Ready in 5 working days.</div>
+                <div class="step"><strong>You get the link.</strong> Your website is live. Domain is in your name. Need a change? Just message the WhatsApp group.</div>
+            </div>
+        </div>
+
+        <!-- What's Included: Setup -->
+        <div class="card">
+            <div class="card-title"><span class="icon">📦</span> What's Included — One-Time Setup</div>
+            <ul class="checklist">
+                <li>
+                    Up to 5–8 pages — Home, About, Services, Contact, Gallery, and more
+                    <span class="sub">Exact pages depend on your business type (e.g. menu, team, testimonials)</span>
+                </li>
+                <li>
+                    Professional bilingual website — English + Hindi
+                    <span class="sub">English for Google ranking, Hindi toggle so your customers feel at home</span>
+                </li>
+                <li>
+                    Domain name registration in your name
+                    <span class="sub">e.g. yourbusiness.com — you own it, always</span>
+                </li>
+                <li>Hosting & SSL certificate (HTTPS secure site)</li>
+                <li>
+                    Mobile-responsive design
+                    <span class="sub">Looks great on phones, tablets, and desktops</span>
+                </li>
+                <li>
+                    Basic SEO setup
+                    <span class="sub">Meta tags, local schema markup, geo-targeted content so you appear in nearby searches</span>
+                </li>
+                <li>
+                    Google Business Profile setup
+                    <span class="sub">We create or claim your Google listing so you show up on Maps</span>
+                </li>
+                <li>WhatsApp click-to-chat button on your website</li>
+                <li>
+                    Lead collection form
+                    <span class="sub">Visitors can enquire directly from your site — you get notified by email</span>
+                </li>
+                <li>
+                    Social media links on your website
+                    <span class="sub">Instagram, Facebook, YouTube, etc. — share your handles, we'll add them</span>
+                </li>
+                <li>
+                    AI-assisted branding from your existing assets
+                    <span class="sub">We work with your current logo, photos, and brand colours</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- What's Included: Monthly -->
+        <div class="card">
+            <div class="card-title"><span class="icon">🔄</span> What's Included — Every Month</div>
+            <ul class="checklist">
+                <li>
+                    Unlimited content updates via WhatsApp
+                    <span class="sub">Change text, prices, timings, descriptions — just message the group</span>
+                </li>
+                <li>
+                    Image & photo updates
+                    <span class="sub">Send new photos on WhatsApp, we update your site</span>
+                </li>
+                <li>
+                    Add new pages as your business grows
+                    <span class="sub">Menu page, gallery, testimonials — just ask</span>
+                </li>
+                <li>Website hosting & domain renewal — covered</li>
+                <li>
+                    Dedicated WhatsApp group
+                    <span class="sub">Direct access to our team for any website request</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- What's NOT Included -->
+        <div class="card">
+            <div class="card-title"><span class="icon">📋</span> What's Not Included</div>
+            <ul class="exclusion-list">
+                <li>Online store, shopping cart, or payment collection on website</li>
+                <li>Bespoke designer-made layouts (we generate AI-based designs using your brand assets — not pixel-perfect custom design by a graphic designer)</li>
+                <li>Professional copywriting or content creation services</li>
+                <li>New logo creation or full brand identity package</li>
+                <li>Social media management or ad campaigns</li>
+            </ul>
+            <div style="margin-top: 12px; font-size: 13px; color: #64748b; font-style: italic;">
+                Some of these can be added in the future as your needs grow.
+            </div>
+        </div>
+
+        <!-- Pricing -->
+        <div class="card">
+            <div class="card-title"><span class="icon">💰</span> Pricing</div>
+
+            <div class="pricing-grid">
+                <div class="price-box highlight">
+                    <div class="price-label">One-Time Setup</div>
+                    <div class="price-amount"><span class="currency">₹</span>5,000</div>
+                    <div class="price-original">₹12,000</div>
+                    <div class="price-note">Inaugural offer</div>
+                </div>
+                <div class="price-box highlight">
+                    <div class="price-label">Monthly</div>
+                    <div class="price-amount"><span class="currency">₹</span>500<span style="font-size:14px;font-weight:500">/mo</span></div>
+                    <div class="price-original">₹1,000/mo</div>
+                    <div class="price-note">Inaugural offer</div>
+                </div>
+            </div>
+
+            <div style="font-size: 13px; color: #64748b; text-align: center; margin-top: 12px; line-height: 1.5;">
+                Includes domain, hosting, SSL, and all monthly updates.<br>
+                No hidden charges. Cancel anytime.
+            </div>
+        </div>
+
+        <!-- What You Need to Provide -->
+        <div class="card">
+            <div class="card-title"><span class="icon">📱</span> What We Need From You</div>
+            <ul class="checklist">
+                <li>Your business name, address, and contact number</li>
+                <li>List of services or products with prices</li>
+                <li>Photos — shop front, products, team (phone photos are fine)</li>
+                <li>Business timings and any other details you want to show</li>
+                <li>Logo if you have one (not required)</li>
+            </ul>
+            <div style="margin-top: 12px; font-size: 13px; color: #475569;">
+                <strong>That's it.</strong> Just share this over WhatsApp. No forms, no dashboards, no English required. We'll ask follow-up questions if needed.
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <a class="cta" href="https://wa.me/919910013910?text=Hi%2C%20I%27m%20interested%20in%20a%20website%20for%20my%20business" target="_blank">
+            💬 Message Us on WhatsApp
+        </a>
+        <div class="cta-note">We'll set up your dedicated group within 24 hours</div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>Kam.ai — by <a href="https://hcode.tech" target="_blank">HCode Technologies</a></p>
+            <p style="margin-top: 4px;">Questions? WhatsApp us anytime.</p>
+        </div>
+
+    </div>
+</body>
+</html>
