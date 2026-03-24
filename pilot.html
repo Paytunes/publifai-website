@@ -53,6 +53,33 @@
             // Update meta description
             const metaDesc = document.querySelector('meta[name="description"]');
             if (metaDesc) metaDesc.setAttribute('content', metaDesc.content.replace(/₹4,999/g, '$199').replace(/₹499\/mo/g, '$19/mo'));
+
+            // --- Bilingual → Professional messaging ---
+            const step1Detail = document.getElementById('step-1-detail');
+            if (step1Detail) step1Detail.textContent = 'Tell us about your business — name, services, prices, photos. In any language you prefer.';
+
+            const step2Title = document.getElementById('step-2-title');
+            if (step2Title) step2Title.textContent = 'We build your professional website.';
+            const step2Detail = document.getElementById('step-2-detail');
+            if (step2Detail) step2Detail.textContent = 'Professional website optimized for search engines. Mobile-friendly, shows up on Google. Ready in 5 working days.';
+
+            const setupBilingualTitle = document.getElementById('setup-bilingual-title');
+            if (setupBilingualTitle) setupBilingualTitle.textContent = 'Professional multilingual-ready website';
+            const setupBilingualDetail = document.getElementById('setup-bilingual-detail');
+            if (setupBilingualDetail) setupBilingualDetail.textContent = 'Optimized for Google ranking, with multilingual support available on request';
+
+            const whatWeNeedFooter = document.getElementById('what-we-need-footer');
+            if (whatWeNeedFooter) whatWeNeedFooter.innerHTML = '<strong>That\'s it.</strong> Just share this over WhatsApp. No forms, no dashboards, no technical skills required. We\'ll ask follow-up questions if needed.';
+
+            // --- Why Bilingual → Why Professional Web Content ---
+            const whyBilingualTitle = document.getElementById('why-bilingual-title');
+            if (whyBilingualTitle) whyBilingualTitle.textContent = 'Why Professional Web Content?';
+            const whyBilingualContent = document.getElementById('why-bilingual-content');
+            if (whyBilingualContent) whyBilingualContent.innerHTML = '<div class="flex gap-3"><span class="shrink-0">🔍</span><span><strong class="text-white">SEO-optimized copy</strong> — Professional content written for search engines. Your business shows up when customers search for your services.</span></div><div class="flex gap-3"><span class="shrink-0">📱</span><span><strong class="text-white">Mobile-first design</strong> — Over 60% of web traffic is mobile. Your site loads fast and looks great on every device.</span></div><div class="flex gap-3"><span class="shrink-0">📈</span><span><strong class="text-white">Conversion-focused</strong> — Click-to-call buttons, contact forms, Google Maps integration. Every element designed to turn visitors into customers.</span></div>';
+
+            // --- OG meta ---
+            const ogDesc = document.querySelector('meta[property="og:description"]');
+            if (ogDesc) ogDesc.setAttribute('content', 'Chat on WhatsApp. Get a professional website. Show up on Google. $199 setup + $19/mo.');
         }
         document.addEventListener('DOMContentLoaded', detectCountryAndSetPricing);
     </script>
@@ -93,14 +120,14 @@
                     <div class="w-8 h-8 bg-brand text-white rounded-full flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</div>
                     <div>
                         <div class="font-semibold text-[15px]">Chat with us on WhatsApp.</div>
-                        <div class="text-sm text-gray-500">Tell us about your business — name, services, prices, photos. In Hindi, English, whatever you prefer.</div>
+                        <div id="step-1-detail" class="text-sm text-gray-500">Tell us about your business — name, services, prices, photos. In Hindi, English, whatever you prefer.</div>
                     </div>
                 </div>
                 <div class="flex gap-4">
                     <div class="w-8 h-8 bg-brand text-white rounded-full flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</div>
                     <div>
-                        <div class="font-semibold text-[15px]">We build your bilingual website.</div>
-                        <div class="text-sm text-gray-500">Professional English website with a Hindi toggle. Mobile-friendly, shows up on Google. Ready in 5 working days.</div>
+                        <div id="step-2-title" class="font-semibold text-[15px]">We build your bilingual website.</div>
+                        <div id="step-2-detail" class="text-sm text-gray-500">Professional English website with a Hindi toggle. Mobile-friendly, shows up on Google. Ready in 5 working days.</div>
                     </div>
                 </div>
                 <div class="flex gap-4">
@@ -129,8 +156,8 @@
                 <li class="flex gap-3 text-sm">
                     <span class="w-5 h-5 bg-green-50 text-green-600 rounded-full flex items-center justify-center text-[11px] font-bold shrink-0 mt-0.5">✓</span>
                     <div>
-                        <div class="text-gray-900 font-medium">Professional bilingual website — English + Hindi</div>
-                        <div class="text-gray-400 text-[13px]">English for Google ranking, Hindi toggle so your customers feel at home</div>
+                        <div id="setup-bilingual-title" class="text-gray-900 font-medium">Professional bilingual website — English + Hindi</div>
+                        <div id="setup-bilingual-detail" class="text-gray-400 text-[13px]">English for Google ranking, Hindi toggle so your customers feel at home</div>
                     </div>
                 </li>
                 <li class="flex gap-3 text-sm">
@@ -276,8 +303,8 @@
 
         <!-- Why Bilingual Matters -->
         <div class="bg-brand rounded-2xl p-6 mb-4 text-white">
-            <h2 class="font-bold text-base mb-3">Why English + Hindi?</h2>
-            <div class="space-y-3 text-[14px] text-green-100">
+            <h2 id="why-bilingual-title" class="font-bold text-base mb-3">Why English + Hindi?</h2>
+            <div id="why-bilingual-content" class="space-y-3 text-[14px] text-green-100">
                 <div class="flex gap-3">
                     <span class="shrink-0">🔍</span>
                     <span><strong class="text-white">English for Google</strong> — 49.5% of websites are in English. Google's indexing, Knowledge Graph, and ranking infrastructure are deepest in English.</span>
@@ -320,7 +347,7 @@
                     <span class="text-gray-700">Logo if you have one (not required)</span>
                 </li>
             </ul>
-            <div class="mt-4 text-sm text-gray-600">
+            <div id="what-we-need-footer" class="mt-4 text-sm text-gray-600">
                 <strong>That's it.</strong> Just share this over WhatsApp. No forms, no dashboards, no English required. We'll ask follow-up questions if needed.
             </div>
         </div>
