@@ -1,0 +1,31 @@
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Stage public files
+        run: |
+          mkdir -p dist
+          cp -r *.html dist/ 2>/dev/null || true
+          # Copy any static asset dirs if they exist (images, css, js, fonts)
+          for d in images css js fonts assets; do
+            [ -d "$d" ] && cp -r "$d" dist/ || true
+          done
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=publifai-in --branch=main --commit-dirty=true
