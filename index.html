@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Publifai — The Operating System for India's Small Businesses</title>
-    <meta name="description" content="Every small business operation that requires a separate app can be a conversation. Publifai builds AI agents for India's 63 million SMBs — starting with websites, delivered through WhatsApp.">
-    <meta property="og:title" content="Publifai — The Operating System for India's Small Businesses">
-    <meta property="og:description" content="Chat on WhatsApp. Get a bilingual website. Show up on Google. Built for India's 63M small businesses.">
+    <title>Publifai — Your website should not feel like a hostage situation</title>
+    <meta name="description" content="Chat with us on WhatsApp. We'll build you a website that works, put it on Google, and keep it updated forever. No dashboards. No disappearing acts. No agency holding your domain.">
+    <meta property="og:title" content="Publifai — Your website should not feel like a hostage situation">
+    <meta property="og:description" content="Chat with us on WhatsApp. We'll build you a website that works, put it on Google, and keep it updated forever.">
     <meta property="og:type" content="website">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
@@ -24,147 +24,6 @@
             }
         }
     </script>
-    <script>
-        // Geo-based pricing: detect if visitor is outside India
-        async function detectCountryAndSetPricing() {
-            try {
-                const resp = await fetch('https://ipapi.co/country/', { signal: AbortSignal.timeout(3000) });
-                const country = (await resp.text()).trim();
-                if (country && country !== 'IN') {
-                    applyInternationalPricing();
-                }
-            } catch (e) {
-                // On error, default to Indian pricing (₹)
-            }
-        }
-        function applyInternationalPricing() {
-            // --- Comparison table pricing ---
-            const y1cost = document.getElementById('year1-cost');
-            if (y1cost) y1cost.textContent = '~$427';
-            const compFreelancerCost = document.getElementById('comp-freelancer-cost');
-            if (compFreelancerCost) compFreelancerCost.textContent = '$2,000-5,000+';
-            const compWixCost = document.getElementById('comp-wix-cost');
-            if (compWixCost) compWixCost.textContent = '$200-600';
-            const compFreelancerOngoing = document.getElementById('comp-freelancer-ongoing');
-            if (compFreelancerOngoing) compFreelancerOngoing.textContent = '$100-500/mo extra';
-
-            // --- Comparison table bilingual/language rows ---
-            const compBilingual = document.getElementById('comp-kamai-bilingual');
-            if (compBilingual) compBilingual.textContent = 'Professional multilingual';
-            const compEnglish = document.getElementById('comp-kamai-english-needed');
-            if (compEnglish) compEnglish.textContent = 'No — just chat';
-
-            // --- Hero section ---
-            const heroBadge = document.getElementById('hero-badge');
-            if (heroBadge) heroBadge.textContent = 'Building for Small Businesses Everywhere';
-            const heroSubtitle = document.getElementById('hero-subtitle');
-            if (heroSubtitle) heroSubtitle.textContent = 'Kam.ai is the operating system for small businesses — delivered through WhatsApp. No apps to learn. No dashboards to navigate. Just chat.';
-
-            // --- Stats bar (globally relevant) ---
-            const stat1 = document.getElementById('stat-1');
-            if (stat1) stat1.innerHTML = '<div class="text-3xl md:text-4xl font-bold text-brand">400M+</div><div class="text-sm text-gray-500 mt-1">Small businesses worldwide</div>';
-            const stat2 = document.getElementById('stat-2');
-            if (stat2) stat2.innerHTML = '<div class="text-3xl md:text-4xl font-bold text-brand">~50%</div><div class="text-sm text-gray-500 mt-1">Still have no website</div>';
-            const stat3 = document.getElementById('stat-3');
-            if (stat3) stat3.innerHTML = '<div class="text-3xl md:text-4xl font-bold text-brand">2B+</div><div class="text-sm text-gray-500 mt-1">WhatsApp users globally</div>';
-            const stat4 = document.getElementById('stat-4');
-            if (stat4) stat4.innerHTML = '<div class="text-3xl md:text-4xl font-bold text-brand">73%</div><div class="text-sm text-gray-500 mt-1">Prefer messaging over calls</div>';
-
-            // --- Problem section ---
-            const problemHeading = document.getElementById('problem-heading');
-            if (problemHeading) problemHeading.textContent = 'Small businesses are invisible online.';
-            const problemSubtitle = document.getElementById('problem-subtitle');
-            if (problemSubtitle) problemSubtitle.textContent = 'The local bakery, the neighbourhood tutor, the freelance photographer, the family clinic. They all need customers — and they have zero appetite for learning software.';
-            const problemCost = document.getElementById('problem-cost-text');
-            if (problemCost) problemCost.textContent = 'A freelancer charges $2,000-5,000+ for a basic site. Agencies want $5,000-15,000+. And maintenance is another $100-500/month.';
-            const problemLangTitle = document.getElementById('problem-lang-title');
-            if (problemLangTitle) problemLangTitle.textContent = 'Content is hard';
-            const problemLangText = document.getElementById('problem-lang-text');
-            if (problemLangText) problemLangText.textContent = 'Most small business owners aren\'t writers. Creating professional web content, SEO copy, and service descriptions is a skill they don\'t have — and shouldn\'t need.';
-            const problemToolsText = document.getElementById('problem-tools-text');
-            if (problemToolsText) problemToolsText.textContent = 'Wix, Squarespace, WordPress — all require dashboards, forms, and technical literacy. Most small business owners are single-operator shops with no time to learn software.';
-            const problemPlatformsText = document.getElementById('problem-platforms-text');
-            if (problemPlatformsText) problemPlatformsText.textContent = 'Yelp charges $300-1,000/mo for ads. DoorDash and Uber Eats take 15-30% commissions. You don\'t own your customer data or your brand.';
-
-            // --- Thesis section (Hindi examples → English) ---
-            const thesis1 = document.getElementById('thesis-example-1');
-            if (thesis1) thesis1.textContent = '"Update my website"';
-            const thesis2 = document.getElementById('thesis-example-2');
-            if (thesis2) thesis2.textContent = '"Send yesterday\'s invoice to Mr. Smith"';
-            const thesis3 = document.getElementById('thesis-example-3');
-            if (thesis3) thesis3.textContent = '"Create some posts for Instagram"';
-
-            // --- Why This Works section ---
-            const whyLabel = document.getElementById('why-works-label');
-            if (whyLabel) whyLabel.textContent = 'Why This Works';
-            const whyHeading = document.getElementById('why-works-heading');
-            if (whyHeading) whyHeading.textContent = 'Conversational-first is a structural advantage.';
-            const whyComfort = document.getElementById('why-works-comfort-text');
-            if (whyComfort) whyComfort.textContent = 'Billions of smartphone users, but software literacy remains low. Everyone knows how to send a message. Not everyone knows how to navigate a dashboard.';
-            const whyLangTitle = document.getElementById('why-works-lang-title');
-            if (whyLangTitle) whyLangTitle.textContent = '🗣️ Natural Language';
-            const whyLangText = document.getElementById('why-works-lang-text');
-            if (whyLangText) whyLangText.textContent = 'Kam.ai handles any language natively. No UI to translate. No forms to fill. The conversation IS the interface.';
-            const whyTrust = document.getElementById('why-works-trust-text');
-            if (whyTrust) whyTrust.textContent = 'Small business owners trust people, not software. A conversational agent that remembers context and talks like a helpful assistant builds trust faster than any SaaS UI.';
-            const whyDist = document.getElementById('why-works-dist-text');
-            if (whyDist) whyDist.textContent = 'No app install. No signup flow. Share a WhatsApp link — that\'s the entire acquisition funnel. 2 billion people are already on WhatsApp.';
-
-            // --- Website Agent / Product section ---
-            const productSubtitle = document.getElementById('product-subtitle');
-            if (productSubtitle) productSubtitle.textContent = 'Chat on WhatsApp in your language. Get a professional, multilingual-ready website. Show up on Google. Done in 5 days.';
-
-            // Chat demo (English bakery example)
-            const cb1 = document.getElementById('chat-bubble-1');
-            if (cb1) cb1.textContent = 'Hi! I\'m Sarah from Sweet Crumb Bakery in Austin. We do custom cakes, pastries, and catering. Open Tue-Sun. 🎂';
-            const cb2 = document.getElementById('chat-bubble-2');
-            if (cb2) cb2.textContent = 'Got it, Sarah! I\'m creating your professional website — optimized for Google so local customers can find you. I\'ll have a preview ready in a few hours. 🚀';
-            const cb3 = document.getElementById('chat-bubble-3');
-            if (cb3) cb3.textContent = 'Hours are 7am-6pm, closed Mondays. Sending photos now 📸';
-            const cb4 = document.getElementById('chat-bubble-4');
-            if (cb4) cb4.textContent = 'Perfect. I\'ll add your hours and photos. Your site will have: menu page, gallery, Google Maps, click-to-call button, and order form. All SEO-optimized. ✅';
-
-            // Feature cards
-            const featureBilingualTitle = document.getElementById('feature-bilingual-title');
-            if (featureBilingualTitle) featureBilingualTitle.textContent = '🌐 Multilingual-Ready';
-            const featureBilingualText = document.getElementById('feature-bilingual-text');
-            if (featureBilingualText) featureBilingualText.textContent = 'Professional English website optimized for Google SEO. Multilingual support available on request. All generated from your casual chat.';
-            const featureComplianceText = document.getElementById('feature-compliance-text');
-            if (featureComplianceText) featureComplianceText.textContent = 'SSL, privacy policy, business registration display, voice search optimized FAQs. All included.';
-
-            // --- How It Works steps ---
-            const step1 = document.getElementById('step-1-text');
-            if (step1) step1.textContent = 'Message us on WhatsApp in any language. Share your business details, photos, and prices. 10-15 minutes.';
-            const step2 = document.getElementById('step-2-text');
-            if (step2) step2.textContent = 'AI generates professional website content. Category-specific template. SEO, Google Business Profile — all set up.';
-            const step3 = document.getElementById('step-3-text');
-            if (step3) step3.textContent = 'Your professional website is live. Domain in your name. Need changes anytime? Just message us on WhatsApp.';
-
-            // --- Vision section ---
-            const visionWebsite = document.getElementById('vision-website-text');
-            if (visionWebsite) visionWebsite.textContent = 'Build and maintain a professional website through chat.';
-            const visionBilling = document.getElementById('vision-billing-text');
-            if (visionBilling) visionBilling.textContent = 'Invoices, payment reminders, tax compliance — all via chat.';
-
-            // --- CTA section ---
-            const ctaSubtitle = document.getElementById('cta-subtitle');
-            if (ctaSubtitle) ctaSubtitle.textContent = 'Now available globally. Limited spots. Chat on WhatsApp — we\'ll have your website live in 5 days.';
-
-            // --- Footer ---
-            const footerTagline = document.getElementById('footer-tagline');
-            if (footerTagline) footerTagline.textContent = 'The operating system for small businesses.';
-
-            // --- Meta tags ---
-            document.title = 'Kam.ai — The Operating System for Small Businesses';
-            const metaDesc = document.querySelector('meta[name="description"]');
-            if (metaDesc) metaDesc.setAttribute('content', 'Every small business operation that requires a separate app can be a conversation. Kam.ai builds AI agents for small businesses — starting with websites, delivered through WhatsApp.');
-            const ogTitle = document.querySelector('meta[property="og:title"]');
-            if (ogTitle) ogTitle.setAttribute('content', 'Kam.ai — The Operating System for Small Businesses');
-            const ogDesc = document.querySelector('meta[property="og:description"]');
-            if (ogDesc) ogDesc.setAttribute('content', 'Chat on WhatsApp. Get a professional website. Show up on Google. Built for small businesses everywhere.');
-        }
-        document.addEventListener('DOMContentLoaded', detectCountryAndSetPricing);
-    </script>
     <style>
         html { scroll-behavior: smooth; }
         .gradient-text {
@@ -180,26 +39,13 @@
             padding: 12px 16px;
             font-size: 14px;
             color: #1C1917;
-            max-width: 280px;
+            max-width: 320px;
         }
         .chat-bubble-reply {
             background: #fff;
             border: 1px solid #E5E7EB;
             border-radius: 12px 12px 0 12px;
             margin-left: auto;
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(24px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        .animate-on-scroll.visible {
-            opacity: 1;
-            transform: translateY(0);
         }
     </style>
 </head>
@@ -210,421 +56,189 @@
         <div class="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
             <a href="/" class="text-xl font-bold text-brand">Publif<span class="text-brand-light">ai</span></a>
             <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
-                <a href="#problem" class="hover:text-brand transition-colors">The Problem</a>
-                <a href="#product" class="hover:text-brand transition-colors">Product</a>
-                <a href="#how-it-works" class="hover:text-brand transition-colors">How It Works</a>
-                <a href="#team" class="hover:text-brand transition-colors">Team</a>
+                <a href="#how" class="hover:text-brand transition-colors">How it works</a>
+                <a href="pilot.html" class="hover:text-brand transition-colors">Pricing</a>
             </div>
-            <a href="pilot.html" class="bg-whatsapp hover:bg-whatsapp-hover text-white font-semibold text-sm px-5 py-2.5 rounded-lg transition-colors">
-                Join the Pilot
+            <a href="https://wa.me/919910013910?text=Hi%2C%20I%27m%20interested%20in%20Publifai" target="_blank" class="bg-whatsapp hover:bg-whatsapp-hover text-white font-semibold text-sm px-5 py-2.5 rounded-lg transition-colors">
+                WhatsApp us
             </a>
         </div>
     </nav>
 
-    <!-- Hero -->
+    <!-- Section 1 — Hero -->
     <section class="pt-32 pb-16 md:pt-40 md:pb-24 px-5">
         <div class="max-w-4xl mx-auto text-center">
-            <div id="hero-badge" class="inline-block bg-green-50 text-brand text-xs font-semibold tracking-wide uppercase px-4 py-1.5 rounded-full mb-6">
-                Building for India's 63M Small Businesses
+            <div class="inline-block bg-green-50 text-brand text-xs font-semibold tracking-wide uppercase px-4 py-1.5 rounded-full mb-6">
+                For shops, clinics, and studios that deserve a working website
             </div>
             <h1 class="text-4xl md:text-5xl lg:text-[56px] font-bold leading-tight mb-6 text-gray-900">
-                Every small business operation<br class="hidden md:block"> can be a <span class="gradient-text">conversation.</span>
+                Your website should not feel like a <span class="gradient-text">hostage situation.</span>
             </h1>
             <p class="text-lg md:text-xl text-gray-500 max-w-2xl mx-auto mb-10 leading-relaxed">
-                Publifai is the operating system for India's small businesses — delivered through WhatsApp. No apps to learn. No dashboards to navigate. Just chat.
+                Chat with us on WhatsApp. We'll build you a website that works, put it on Google, and keep it updated forever. No dashboards. No disappearing acts. No agency holding your domain.
             </p>
-            <div class="flex flex-col sm:flex-row gap-3 justify-center">
-                <a href="pilot.html" class="bg-whatsapp hover:bg-whatsapp-hover text-white font-semibold text-base px-8 py-3.5 rounded-xl transition-colors inline-flex items-center justify-center gap-2">
+            <div class="flex justify-center">
+                <a href="https://wa.me/919910013910?text=Hi%2C%20I%27m%20interested%20in%20Publifai" target="_blank" class="bg-whatsapp hover:bg-whatsapp-hover text-white font-semibold text-base px-8 py-3.5 rounded-xl transition-colors inline-flex items-center justify-center gap-2">
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                    Join the Pilot
-                </a>
-                <a href="#problem" class="border border-gray-200 hover:border-brand text-gray-700 hover:text-brand font-semibold text-base px-8 py-3.5 rounded-xl transition-colors inline-flex items-center justify-center">
-                    Learn More
+                    Chat with us on WhatsApp
                 </a>
             </div>
+            <p class="text-sm text-gray-500 mt-6">Piloting now with our first businesses across Delhi NCR &amp; Rajasthan.</p>
         </div>
     </section>
 
-    <!-- Stats Bar -->
-    <section class="border-y border-gray-100 bg-gray-50/50 py-10 px-5">
-        <div class="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div id="stat-1">
-                <div class="text-3xl md:text-4xl font-bold text-brand">63M+</div>
-                <div class="text-sm text-gray-500 mt-1">Small businesses in India</div>
-            </div>
-            <div id="stat-2">
-                <div class="text-3xl md:text-4xl font-bold text-brand">~1.6%</div>
-                <div class="text-sm text-gray-500 mt-1">Have a functioning website</div>
-            </div>
-            <div id="stat-3">
-                <div class="text-3xl md:text-4xl font-bold text-brand">97%</div>
-                <div class="text-sm text-gray-500 mt-1">Already on WhatsApp</div>
-            </div>
-            <div id="stat-4">
-                <div class="text-3xl md:text-4xl font-bold text-brand">0.07%</div>
-                <div class="text-sm text-gray-500 mt-1">Of websites are in Hindi</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Problem -->
-    <section id="problem" class="py-16 md:py-24 px-5">
-        <div class="max-w-5xl mx-auto">
-            <div class="text-center mb-14">
-                <div class="text-xs font-semibold tracking-wide uppercase text-brand mb-3">The Problem</div>
-                <h2 id="problem-heading" class="text-3xl md:text-4xl font-bold mb-4">India's small businesses are invisible online.</h2>
-                <p id="problem-subtitle" class="text-gray-500 text-lg max-w-2xl mx-auto">The chai stall owner, the neighbourhood tutor, the freelance photographer, the local clinic. They all need customers — and they have zero appetite for learning software.</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-                <div class="bg-white border border-gray-100 rounded-2xl p-6 hover:shadow-md transition-shadow">
-                    <div class="text-2xl mb-3">🔍</div>
-                    <h3 class="font-semibold text-base mb-2">Can't be found online</h3>
-                    <p class="text-sm text-gray-500 leading-relaxed">No website. Maybe a Google listing a cousin set up 2 years ago with the wrong phone number. New customers can't discover them.</p>
-                </div>
-                <div class="bg-white border border-gray-100 rounded-2xl p-6 hover:shadow-md transition-shadow">
-                    <div class="text-2xl mb-3">💸</div>
-                    <h3 class="font-semibold text-base mb-2">Solutions are too expensive</h3>
-                    <p id="problem-cost-text" class="text-sm text-gray-500 leading-relaxed">A freelancer charges ₹15K-40K for an English-only site. Agencies want ₹30K+. And maintenance is another ₹5K-20K/month.</p>
-                </div>
-                <div class="bg-white border border-gray-100 rounded-2xl p-6 hover:shadow-md transition-shadow">
-                    <div class="text-2xl mb-3">🌐</div>
-                    <h3 id="problem-lang-title" class="font-semibold text-base mb-2">Language barrier</h3>
-                    <p id="problem-lang-text" class="text-sm text-gray-500 leading-relaxed">Only 2-4% of Indians have professional English fluency. The web is 49.5% English, 0.07% Hindi. SMBs can't create content for it.</p>
-                </div>
-                <div class="bg-white border border-gray-100 rounded-2xl p-6 hover:shadow-md transition-shadow">
-                    <div class="text-2xl mb-3">📱</div>
-                    <h3 class="font-semibold text-base mb-2">Tools are too complex</h3>
-                    <p id="problem-tools-text" class="text-sm text-gray-500 leading-relaxed">Wix, GoDaddy, WordPress — all require dashboards, forms, and technical literacy. 94% of MSMEs are single-owner operations.</p>
-                </div>
-                <div class="bg-white border border-gray-100 rounded-2xl p-6 hover:shadow-md transition-shadow">
-                    <div class="text-2xl mb-3">🏪</div>
-                    <h3 class="font-semibold text-base mb-2">Platforms eat their profits</h3>
-                    <p id="problem-platforms-text" class="text-sm text-gray-500 leading-relaxed">Zomato takes 25-35% commission. JustDial charges ₹18K-59K/year for mostly fake leads. They don't own their customer data.</p>
-                </div>
-                <div class="bg-white border border-gray-100 rounded-2xl p-6 hover:shadow-md transition-shadow">
-                    <div class="text-2xl mb-3">📉</div>
-                    <h3 class="font-semibold text-base mb-2">Social media stopped working free</h3>
-                    <p class="text-sm text-gray-500 leading-relaxed">Facebook organic reach: 1.37%. Instagram engagement down 18% YoY. The free lunch is over. SMBs need owned presence.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Thesis -->
-    <section class="bg-brand py-16 md:py-24 px-5">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
-                What if every small business operation<br class="hidden md:block"> could be a conversation?
-            </h2>
-            <p class="text-green-100 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
-                Not a chatbot. Not a menu with buttons. A genuine AI agent that understands your business, remembers your context, and takes action on your behalf — inside the chat app you already use 14 hours a day.
-            </p>
-            <div class="grid md:grid-cols-3 gap-6 text-left">
-                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/10">
-                    <div class="text-white/60 text-sm font-medium mb-2">You say:</div>
-                    <div id="thesis-example-1" class="text-white font-medium">"Mera website update karo"</div>
-                    <div class="text-green-200 text-sm mt-2">→ Website Agent handles it</div>
-                </div>
-                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/10">
-                    <div class="text-white/60 text-sm font-medium mb-2">You say:</div>
-                    <div id="thesis-example-2" class="text-white font-medium">"Kal ka invoice bhejo Sharma ji ko"</div>
-                    <div class="text-green-200 text-sm mt-2">→ Billing Agent handles it</div>
-                </div>
-                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/10">
-                    <div class="text-white/60 text-sm font-medium mb-2">You say:</div>
-                    <div id="thesis-example-3" class="text-white font-medium">"Instagram ke liye kuch post banao"</div>
-                    <div class="text-green-200 text-sm mt-2">→ Marketing Agent handles it</div>
-                </div>
-            </div>
-            <p class="text-green-200/80 text-sm mt-8">Same chat. Same trust. One relationship that compounds over time.</p>
-        </div>
-    </section>
-
-    <!-- Why Conversational Wins -->
+    <!-- Section 2 — The three stories -->
     <section class="py-16 md:py-24 px-5 bg-gray-50/50">
         <div class="max-w-5xl mx-auto">
-            <div class="text-center mb-14">
-                <div id="why-works-label" class="text-xs font-semibold tracking-wide uppercase text-brand mb-3">Why This Works in India</div>
-                <h2 id="why-works-heading" class="text-3xl md:text-4xl font-bold">Conversational-first is a structural advantage.</h2>
-            </div>
-            <div class="grid md:grid-cols-2 gap-6">
+            <div class="grid md:grid-cols-3 gap-6">
                 <div class="bg-white border border-gray-100 rounded-2xl p-7">
-                    <h3 class="font-bold text-lg mb-2">💬 Comfort & Literacy</h3>
-                    <p id="why-works-comfort-text" class="text-gray-500 text-[15px] leading-relaxed">800M+ smartphone users, but software literacy is low outside metros. Everyone knows how to send a message. Not everyone knows how to navigate a dashboard.</p>
+                    <h3 class="font-bold text-lg mb-3">Your freelancer stopped replying in March.</h3>
+                    <p class="text-gray-600 text-[15px] leading-relaxed mb-4">You paid him ₹18,000 in January. He built the site, showed you the preview, and then went quiet. The site still says "Diwali offer — 20% off." It's August. You messaged him four times. Last seen yesterday. No reply.</p>
+                    <p class="text-brand font-medium text-[15px] leading-relaxed">We don't disappear. Every website we build gets updated the same day you send us a WhatsApp message. Forever.</p>
                 </div>
                 <div class="bg-white border border-gray-100 rounded-2xl p-7">
-                    <h3 class="font-bold text-lg mb-2">🗣️ Language</h3>
-                    <p class="text-gray-500 text-[15px] leading-relaxed">Publifai handles Hinglish, Hindi, and regional languages natively. No UI to translate. The conversation IS the interface.</p>
+                    <h3 class="font-bold text-lg mb-3">Your website looks like 2019. Because it is from 2019.</h3>
+                    <p class="text-gray-600 text-[15px] leading-relaxed mb-4">It was fine when it went live. Now it loads slow on your phone. The photos are stretched. Your services page still lists things you stopped doing two years ago. The guy who built it wants ₹22,000 to "redesign" — but you're not sure he's still in business.</p>
+                    <p class="text-brand font-medium text-[15px] leading-relaxed">We rebuild it to look current in a week. Same content, fresh design, mobile-first. One WhatsApp chat. No login, no forms.</p>
                 </div>
                 <div class="bg-white border border-gray-100 rounded-2xl p-7">
-                    <h3 class="font-bold text-lg mb-2">🤝 Trust</h3>
-                    <p id="why-works-trust-text" class="text-gray-500 text-[15px] leading-relaxed">Indian SMBs trust people, not software. A conversational agent that remembers context and talks like a helpful assistant builds trust faster than any SaaS UI.</p>
-                </div>
-                <div class="bg-white border border-gray-100 rounded-2xl p-7">
-                    <h3 class="font-bold text-lg mb-2">📲 Distribution</h3>
-                    <p id="why-works-dist-text" class="text-gray-500 text-[15px] leading-relaxed">No app install. No signup flow. Share a WhatsApp link — that's the entire acquisition funnel. 97% of Indian SMBs are already there.</p>
+                    <h3 class="font-bold text-lg mb-3">Your agency won't give you your domain back.</h3>
+                    <p class="text-gray-600 text-[15px] leading-relaxed mb-4">You asked them to transfer it to you. They said "we handle that internally." You asked for the login. They stopped replying. You looked up the WHOIS and the domain is registered in THEIR name, not yours. They want ₹8,000 to "release it."</p>
+                    <p class="text-brand font-medium text-[15px] leading-relaxed">Every Publifai customer's domain is in THEIR name. We give you the ownership certificate. If you already have a domain stuck somewhere, we'll help you get it back — free.</p>
                 </div>
             </div>
+            <p class="text-center text-xl md:text-2xl font-semibold text-gray-900 mt-12">If any of these is you, we built Publifai for you.</p>
         </div>
     </section>
 
-    <!-- First Product: Website Agent -->
-    <section id="product" class="py-16 md:py-24 px-5">
-        <div class="max-w-5xl mx-auto">
-            <div class="text-center mb-14">
-                <div class="inline-block bg-green-50 text-brand text-xs font-semibold tracking-wide uppercase px-4 py-1.5 rounded-full mb-4">
-                    First Product — Live Now
-                </div>
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">The Website Agent</h2>
-                <p id="product-subtitle" class="text-gray-500 text-lg max-w-2xl mx-auto leading-relaxed">
-                    Chat on WhatsApp in your language. Get a professional English website with a Hindi toggle. Show up on Google. Done in 5 days.
-                </p>
-            </div>
-
-            <!-- Chat Demo -->
-            <div class="max-w-md mx-auto mb-16 space-y-3">
-                <div id="chat-bubble-1" class="chat-bubble">
-                    Mera naam Rajesh Jewellers hai. MI Road pe shop hai. Gold aur diamond jewellery. 22 karat, BIS certified. 💎
-                </div>
-                <div id="chat-bubble-2" class="chat-bubble chat-bubble-reply">
-                    Got it, Rajesh! I'm creating your bilingual website — English for Google ranking, Hindi for your local customers. I'll have a preview ready in a few hours. 🚀
-                </div>
-                <div id="chat-bubble-3" class="chat-bubble">
-                    Timing 10-8 hai, Sunday band. Photos bhej raha hoon 📸
-                </div>
-                <div id="chat-bubble-4" class="chat-bubble chat-bubble-reply">
-                    Perfect. I'll add your hours and photos. Your site will have: services page, gallery, Google Maps, WhatsApp button, and contact form. All bilingual. ✅
-                </div>
-            </div>
-
-            <!-- What's included -->
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-                <div class="bg-green-50/50 border border-green-100 rounded-2xl p-6">
-                    <div id="feature-bilingual-title" class="text-brand font-semibold mb-2">🌐 Bilingual by Default</div>
-                    <p id="feature-bilingual-text" class="text-sm text-gray-600">English primary for Google SEO. Hindi toggle for customer trust. Both generated from your Hindi/Hinglish chat.</p>
-                </div>
-                <div class="bg-green-50/50 border border-green-100 rounded-2xl p-6">
-                    <div class="text-brand font-semibold mb-2">📍 Google Visibility</div>
-                    <p class="text-sm text-gray-600">Google Business Profile setup, local schema markup, geo-targeted content. Show up when someone nearby searches.</p>
-                </div>
-                <div class="bg-green-50/50 border border-green-100 rounded-2xl p-6">
-                    <div class="text-brand font-semibold mb-2">📱 Mobile-First</div>
-                    <p class="text-sm text-gray-600">Loads in under 2 seconds. Responsive design. WhatsApp click-to-chat. UPI QR code. Instagram & YouTube embeds.</p>
-                </div>
-                <div class="bg-green-50/50 border border-green-100 rounded-2xl p-6">
-                    <div class="text-brand font-semibold mb-2">🔄 Updates via WhatsApp</div>
-                    <p class="text-sm text-gray-600">Change prices, add photos, update timings — just send a message. No dashboards. No logins. Ever.</p>
-                </div>
-                <div class="bg-green-50/50 border border-green-100 rounded-2xl p-6">
-                    <div class="text-brand font-semibold mb-2">🔒 You Own Everything</div>
-                    <p class="text-sm text-gray-600">.com domain registered in YOUR name. Ownership certificate provided. Already have a domain? We'll set it up for free.</p>
-                </div>
-                <div class="bg-green-50/50 border border-green-100 rounded-2xl p-6">
-                    <div class="text-brand font-semibold mb-2">✅ Compliance Built In</div>
-                    <p id="feature-compliance-text" class="text-sm text-gray-600">SSL, DPDP Act privacy policy, FSSAI/GST/CIN display, voice search optimized FAQs. All included.</p>
-                </div>
-            </div>
+    <!-- Section 3 — What we actually do -->
+    <section id="how" class="py-16 md:py-24 px-5">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center">What Publifai actually is.</h2>
+            <p class="text-gray-700 text-lg leading-relaxed">
+                Publifai is a WhatsApp number. You message us in Hindi, English, or Hinglish. We ask about your business — what you sell, your photos, your timings, your prices. In about a week, we send you a link to your new website. You tell us what to change. We change it. Forever. If you need to add a new service next month, send us a WhatsApp message. Want new photos up before Diwali? WhatsApp. Want to change your phone number because you lost your old SIM? WhatsApp. That's it. That's the whole product.
+            </p>
+            <p class="text-gray-500 text-base leading-relaxed mt-6">
+                No app to download. No dashboard to log into. No "content management system." Just a chat.
+            </p>
         </div>
     </section>
 
-    <!-- How It Works -->
-    <section id="how-it-works" class="py-16 md:py-24 px-5 bg-gray-50/50">
-        <div class="max-w-5xl mx-auto">
-            <div class="text-center mb-14">
-                <div class="text-xs font-semibold tracking-wide uppercase text-brand mb-3">How It Works</div>
-                <h2 class="text-3xl md:text-4xl font-bold">Three steps. Five days. Zero effort.</h2>
+    <!-- Section 4 — A real conversation -->
+    <section class="py-16 md:py-24 px-5 bg-gray-50/50">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl md:text-4xl font-bold mb-2">This is a real conversation.</h2>
+                <p class="text-gray-500 text-sm italic">(Lightly edited, names changed.)</p>
             </div>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="text-center">
-                    <div class="w-14 h-14 bg-brand text-white rounded-2xl flex items-center justify-center text-xl font-bold mx-auto mb-5">1</div>
-                    <h3 class="font-bold text-lg mb-2">Chat with us</h3>
-                    <p id="step-1-text" class="text-gray-500 text-[15px] leading-relaxed">Message us on WhatsApp in Hindi, Hinglish, or English. Share your business details, photos, and prices. 10-15 minutes.</p>
-                </div>
-                <div class="text-center">
-                    <div class="w-14 h-14 bg-brand text-white rounded-2xl flex items-center justify-center text-xl font-bold mx-auto mb-5">2</div>
-                    <h3 class="font-bold text-lg mb-2">We build your website</h3>
-                    <p id="step-2-text" class="text-gray-500 text-[15px] leading-relaxed">AI generates professional English content + Hindi toggle. Category-specific template. SEO, Google Business Profile — all set up.</p>
-                </div>
-                <div class="text-center">
-                    <div class="w-14 h-14 bg-brand text-white rounded-2xl flex items-center justify-center text-xl font-bold mx-auto mb-5">3</div>
-                    <h3 class="font-bold text-lg mb-2">You're live on Google</h3>
-                    <p id="step-3-text" class="text-gray-500 text-[15px] leading-relaxed">Your bilingual website is live. Domain in your name. Need changes anytime? Just message us on WhatsApp.</p>
-                </div>
+
+            <div class="mb-4 text-xs font-semibold tracking-wide uppercase text-brand">Week 1 — the build</div>
+            <div class="space-y-3 mb-12">
+                <div class="chat-bubble">Bhaiya, meri ek jewellery shop hai MI Road pe. Rajesh Jewellers. Purani site hai lekin update nahi hui 2 saal se. Nayi website chahiye.</div>
+                <div class="chat-bubble chat-bubble-reply">Ji Rajesh ji. Aapki purani site ka link bhej do, aur 3-4 photos shop ki. Timing, services, aur WhatsApp number bhi.</div>
+                <div class="chat-bubble">[link + photos bhej diye]</div>
+                <div class="chat-bubble chat-bubble-reply">Perfect. 5 din mein preview bhejte hain. Domain aapke naam pe register karenge — galleryone-jewellers.com chahiye ya koi aur naam?</div>
             </div>
+
+            <div class="mb-4 text-xs font-semibold tracking-wide uppercase text-brand">A month later — the part freelancers skip</div>
+            <div class="space-y-3">
+                <div class="chat-bubble">Bhai, new collection aayi hai. Photos bhej raha hoon, homepage pe laga do.</div>
+                <div class="chat-bubble chat-bubble-reply">Done in 2 hours. Live hai abhi. Check kar lo.</div>
+                <div class="chat-bubble">Ek aur cheez — Sunday ab open rehta hai. Timing update kar do.</div>
+                <div class="chat-bubble chat-bubble-reply">Updated. ✅</div>
+            </div>
+
+            <p class="text-center text-lg font-semibold text-gray-900 mt-12">That's month one. Month six. Month 24. Same chat, same number, same team.</p>
         </div>
     </section>
 
-    <!-- Competitive Edge -->
+    <!-- Section 5 — What you actually get -->
     <section class="py-16 md:py-24 px-5">
-        <div class="max-w-5xl mx-auto">
-            <div class="text-center mb-14">
-                <div class="text-xs font-semibold tracking-wide uppercase text-brand mb-3">Why Publifai</div>
-                <h2 class="text-3xl md:text-4xl font-bold">Freelancer quality. Platform pricing. WhatsApp simplicity.</h2>
-            </div>
-
-            <div class="overflow-x-auto">
-                <table class="w-full text-sm">
-                    <thead>
-                        <tr class="border-b border-gray-200">
-                            <th class="text-left py-4 pr-4 font-semibold text-gray-900"></th>
-                            <th class="text-center py-4 px-4 font-bold text-brand bg-green-50/50 rounded-t-xl">Publifai</th>
-                            <th class="text-center py-4 px-4 font-semibold text-gray-500">Freelancer</th>
-                            <th class="text-center py-4 px-4 font-semibold text-gray-500">Wix / GoDaddy</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-gray-600">
-                        <tr class="border-b border-gray-100">
-                            <td class="py-3.5 pr-4 font-medium text-gray-900">Client effort</td>
-                            <td class="py-3.5 px-4 text-center bg-green-50/30 font-medium text-brand">10 min WhatsApp</td>
-                            <td class="py-3.5 px-4 text-center">Weeks of back-and-forth</td>
-                            <td class="py-3.5 px-4 text-center">DIY, hours/days</td>
-                        </tr>
-                        <tr class="border-b border-gray-100">
-                            <td class="py-3.5 pr-4 font-medium text-gray-900">English needed?</td>
-                            <td id="comp-kamai-english-needed" class="py-3.5 px-4 text-center bg-green-50/30 font-medium text-brand">No</td>
-                            <td class="py-3.5 px-4 text-center">Yes</td>
-                            <td class="py-3.5 px-4 text-center">Yes</td>
-                        </tr>
-                        <tr class="border-b border-gray-100">
-                            <td class="py-3.5 pr-4 font-medium text-gray-900">Bilingual output</td>
-                            <td id="comp-kamai-bilingual" class="py-3.5 px-4 text-center bg-green-50/30 font-medium text-brand">English + Hindi</td>
-                            <td class="py-3.5 px-4 text-center">English only</td>
-                            <td class="py-3.5 px-4 text-center">No</td>
-                        </tr>
-                        <tr class="border-b border-gray-100">
-                            <td class="py-3.5 pr-4 font-medium text-gray-900">Delivery</td>
-                            <td class="py-3.5 px-4 text-center bg-green-50/30 font-medium text-brand">5 days</td>
-                            <td class="py-3.5 px-4 text-center">2-4 weeks</td>
-                            <td class="py-3.5 px-4 text-center">Self-service</td>
-                        </tr>
-                        <tr class="border-b border-gray-100">
-                            <td class="py-3.5 pr-4 font-medium text-gray-900">Year 1 cost</td>
-                            <td id="year1-cost" class="py-3.5 px-4 text-center bg-green-50/30 font-medium text-brand">~₹11K</td>
-                            <td id="comp-freelancer-cost" class="py-3.5 px-4 text-center">₹15K-40K+</td>
-                            <td id="comp-wix-cost" class="py-3.5 px-4 text-center">₹2.4K-18K</td>
-                        </tr>
-                        <tr>
-                            <td class="py-3.5 pr-4 font-medium text-gray-900">Ongoing changes</td>
-                            <td class="py-3.5 px-4 text-center bg-green-50/30 font-medium text-brand">WhatsApp message</td>
-                            <td id="comp-freelancer-ongoing" class="py-3.5 px-4 text-center">₹5K-20K/mo extra</td>
-                            <td class="py-3.5 px-4 text-center">Self-service</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">What you actually get.</h2>
+            <ol class="space-y-8">
+                <li class="flex gap-5">
+                    <span class="text-2xl font-bold text-brand flex-shrink-0">1.</span>
+                    <div>
+                        <h3 class="font-bold text-lg mb-1">A website that works on phones first.</h3>
+                        <p class="text-gray-600 leading-relaxed">Loads fast. Looks current. Your customers won't zoom in to read it.</p>
+                    </div>
+                </li>
+                <li class="flex gap-5">
+                    <span class="text-2xl font-bold text-brand flex-shrink-0">2.</span>
+                    <div>
+                        <h3 class="font-bold text-lg mb-1">Your own domain, in your name.</h3>
+                        <p class="text-gray-600 leading-relaxed">yourshop.com, not yourshop.somewixsite.com. We give you the ownership certificate the day it's registered.</p>
+                    </div>
+                </li>
+                <li class="flex gap-5">
+                    <span class="text-2xl font-bold text-brand flex-shrink-0">3.</span>
+                    <div>
+                        <h3 class="font-bold text-lg mb-1">Google Business Profile done right.</h3>
+                        <p class="text-gray-600 leading-relaxed">When someone nearby searches "jewellery shop MI Road," your shop shows up. We set this up for you.</p>
+                    </div>
+                </li>
+                <li class="flex gap-5">
+                    <span class="text-2xl font-bold text-brand flex-shrink-0">4.</span>
+                    <div>
+                        <h3 class="font-bold text-lg mb-1">Updates on WhatsApp, forever.</h3>
+                        <p class="text-gray-600 leading-relaxed">New prices, new photos, new services, new timings — send a message, it's done. No extra charges.</p>
+                    </div>
+                </li>
+                <li class="flex gap-5">
+                    <span class="text-2xl font-bold text-brand flex-shrink-0">5.</span>
+                    <div>
+                        <h3 class="font-bold text-lg mb-1">English for Google. Hindi for your customers.</h3>
+                        <p class="text-gray-600 leading-relaxed">Both generated from the same WhatsApp chat. One toggle, two languages.</p>
+                    </div>
+                </li>
+            </ol>
         </div>
     </section>
 
-    <!-- Vision: Multi-Agent OS -->
+    <!-- Section 6 — Objections -->
     <section class="py-16 md:py-24 px-5 bg-gray-50/50">
-        <div class="max-w-5xl mx-auto">
-            <div class="text-center mb-14">
-                <div class="text-xs font-semibold tracking-wide uppercase text-brand mb-3">The Vision</div>
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">One chat. Every business need.</h2>
-                <p class="text-gray-500 text-lg max-w-2xl mx-auto">The website is the wedge. The vision is a multi-agent operating system where each business need is handled by a specialized AI agent — all inside your WhatsApp.</p>
-            </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-                <div class="bg-white border border-gray-100 rounded-2xl p-6">
-                    <div class="flex items-center gap-3 mb-3">
-                        <div class="w-10 h-10 bg-green-50 rounded-xl flex items-center justify-center text-lg">🌐</div>
-                        <div>
-                            <h3 class="font-semibold">Website Agent</h3>
-                            <span class="text-xs text-whatsapp font-medium bg-green-50 px-2 py-0.5 rounded-full">Live</span>
-                        </div>
-                    </div>
-                    <p id="vision-website-text" class="text-sm text-gray-500">Build and maintain a professional bilingual website through chat.</p>
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">The questions everyone asks us first.</h2>
+            <div class="space-y-8">
+                <div>
+                    <h3 class="font-bold text-lg mb-2">1. What if YOU disappear like my last guy?</h3>
+                    <p class="text-gray-600 leading-relaxed">We're a registered company (HCode Technologies + PublifyX Tech). Your domain is in your name from day one, which means even if we stopped operating, you keep your website and your customers keep finding you. We'll give you the files. No hostage.</p>
                 </div>
-                <div class="bg-white border border-gray-100 rounded-2xl p-6 opacity-60">
-                    <div class="flex items-center gap-3 mb-3">
-                        <div class="w-10 h-10 bg-gray-50 rounded-xl flex items-center justify-center text-lg">💰</div>
-                        <div>
-                            <h3 class="font-semibold">Billing Agent</h3>
-                            <span class="text-xs text-gray-400 font-medium bg-gray-50 px-2 py-0.5 rounded-full">Coming soon</span>
-                        </div>
-                    </div>
-                    <p id="vision-billing-text" class="text-sm text-gray-500">Invoices, payment reminders, GST compliance — all via chat.</p>
+                <div>
+                    <h3 class="font-bold text-lg mb-2">2. I already have a website. Can you just update that one?</h3>
+                    <p class="text-gray-600 leading-relaxed">Sometimes yes, sometimes no. Send us the link — we'll look at it and tell you honestly. Often it's faster to rebuild than to rescue a site built on a platform we can't access.</p>
                 </div>
-                <div class="bg-white border border-gray-100 rounded-2xl p-6 opacity-60">
-                    <div class="flex items-center gap-3 mb-3">
-                        <div class="w-10 h-10 bg-gray-50 rounded-xl flex items-center justify-center text-lg">📅</div>
-                        <div>
-                            <h3 class="font-semibold">Booking Agent</h3>
-                            <span class="text-xs text-gray-400 font-medium bg-gray-50 px-2 py-0.5 rounded-full">Coming soon</span>
-                        </div>
-                    </div>
-                    <p class="text-sm text-gray-500">Appointments, reminders, no-show management — zero double bookings.</p>
+                <div>
+                    <h3 class="font-bold text-lg mb-2">3. My old agency is holding my domain. Can you get it back?</h3>
+                    <p class="text-gray-600 leading-relaxed">Usually, yes. We've done it before. We'll write them the right email in the right tone and walk you through the transfer. No extra charge for this.</p>
                 </div>
-                <div class="bg-white border border-gray-100 rounded-2xl p-6 opacity-60">
-                    <div class="flex items-center gap-3 mb-3">
-                        <div class="w-10 h-10 bg-gray-50 rounded-xl flex items-center justify-center text-lg">📣</div>
-                        <div>
-                            <h3 class="font-semibold">Marketing Agent</h3>
-                            <span class="text-xs text-gray-400 font-medium bg-gray-50 px-2 py-0.5 rounded-full">Coming soon</span>
-                        </div>
-                    </div>
-                    <p class="text-sm text-gray-500">Social media posts, festival campaigns, Google visibility — automated.</p>
+                <div>
+                    <h3 class="font-bold text-lg mb-2">4. How much?</h3>
+                    <p class="text-gray-600 leading-relaxed">Pilot price: ₹4,999 one-time + ₹499/month for updates and hosting. That's for the first 20 customers. Regular price after that is ₹12,000 + ₹1,200/month. Everything included. No "SEO package" or "maintenance plan" add-ons.</p>
                 </div>
-                <div class="bg-white border border-gray-100 rounded-2xl p-6 opacity-60">
-                    <div class="flex items-center gap-3 mb-3">
-                        <div class="w-10 h-10 bg-gray-50 rounded-xl flex items-center justify-center text-lg">👥</div>
-                        <div>
-                            <h3 class="font-semibold">CRM Agent</h3>
-                            <span class="text-xs text-gray-400 font-medium bg-gray-50 px-2 py-0.5 rounded-full">Coming soon</span>
-                        </div>
-                    </div>
-                    <p class="text-sm text-gray-500">Customer history, follow-ups, referral tracking — context that compounds.</p>
+                <div>
+                    <h3 class="font-bold text-lg mb-2">5. Is the Hindi actually good, or is it Google Translate?</h3>
+                    <p class="text-gray-600 leading-relaxed">It's real Hindi, reviewed by us before it goes live. If a line sounds off, you tell us on WhatsApp and we fix it. That's part of the ₹499/month.</p>
                 </div>
-                <div class="bg-white border border-gray-100 rounded-2xl p-6 opacity-60">
-                    <div class="flex items-center gap-3 mb-3">
-                        <div class="w-10 h-10 bg-gray-50 rounded-xl flex items-center justify-center text-lg">📊</div>
-                        <div>
-                            <h3 class="font-semibold">Insights Agent</h3>
-                            <span class="text-xs text-gray-400 font-medium bg-gray-50 px-2 py-0.5 rounded-full">Coming soon</span>
-                        </div>
-                    </div>
-                    <p class="text-sm text-gray-500">Revenue trends, visitor analytics, growth suggestions — business intelligence in chat.</p>
+                <div>
+                    <h3 class="font-bold text-lg mb-2">6. Will you raise the price next year?</h3>
+                    <p class="text-gray-600 leading-relaxed">Your ₹499/month is locked. We might change prices for new customers — you keep what you signed up for.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Team -->
-    <section id="team" class="py-16 md:py-24 px-5">
-        <div class="max-w-4xl mx-auto">
-            <div class="text-center mb-14">
-                <div class="text-xs font-semibold tracking-wide uppercase text-brand mb-3">Team</div>
-                <h2 class="text-3xl md:text-4xl font-bold">Built by people who know the market.</h2>
-            </div>
-            <div class="grid md:grid-cols-2 gap-6">
-                <div class="bg-white border border-gray-100 rounded-2xl p-7">
-                    <h3 class="font-bold text-lg">Shashank Singla</h3>
-                    <p class="text-brand text-sm font-medium mb-3">Co-founder — Product, Strategy & Engineering</p>
-                    <p class="text-gray-500 text-[15px] leading-relaxed">Runs HCode Technologies. Has built and managed websites for 100+ local businesses — the manual version of what Publifai automates with AI.</p>
-                </div>
-                <div class="bg-white border border-gray-100 rounded-2xl p-7">
-                    <h3 class="font-bold text-lg">Gaurav Tiwari</h3>
-                    <p class="text-brand text-sm font-medium mb-3">Co-founder — Business & Growth</p>
-                    <p class="text-gray-500 text-[15px] leading-relaxed">CEO of PayTunes, a digital advertising platform. Deep experience in helping brands reach diverse Indian demographics through innovative digital channels.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="py-16 md:py-24 px-5 bg-brand">
+    <!-- Section 7 — One button -->
+    <section class="py-20 md:py-28 px-5 bg-brand">
         <div class="max-w-3xl mx-auto text-center">
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Ready to get your business online?</h2>
-            <p id="cta-subtitle" class="text-green-100 text-lg mb-8 leading-relaxed">Join our pilot in Delhi NCR & Rajasthan. Limited spots. Chat on WhatsApp — we'll have your website live in 5 days.</p>
-            <div class="flex flex-col sm:flex-row gap-3 justify-center">
-                <a href="pilot.html" class="bg-whatsapp hover:bg-whatsapp-hover text-white font-semibold text-base px-8 py-3.5 rounded-xl transition-colors inline-flex items-center justify-center gap-2">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                    See Pilot Details
-                </a>
-                <a href="https://wa.me/919910013910?text=Hi%2C%20I%27m%20interested%20in%20Publifai" target="_blank" class="border border-white/30 hover:bg-white/10 text-white font-semibold text-base px-8 py-3.5 rounded-xl transition-colors inline-flex items-center justify-center">
-                    Message Us Directly
-                </a>
-            </div>
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Message us on WhatsApp. That's the whole thing.</h2>
+            <p class="text-green-100 text-lg mb-10 leading-relaxed">Tell us about your business. We'll tell you honestly if Publifai is right for you. No sales call. No form. Just a WhatsApp chat.</p>
+            <a href="https://wa.me/919910013910?text=Hi%2C%20I%27m%20interested%20in%20Publifai" target="_blank" class="bg-whatsapp hover:bg-whatsapp-hover text-white font-semibold text-base px-8 py-3.5 rounded-xl transition-colors inline-flex items-center justify-center gap-2">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                Chat with us on WhatsApp
+            </a>
+            <p class="text-green-100/80 text-sm mt-6">We reply within a few hours. Usually faster.</p>
         </div>
     </section>
 
@@ -633,28 +247,16 @@
         <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
             <div>
                 <div class="text-white font-bold text-lg">Publif<span class="text-brand-light">ai</span></div>
-                <p class="text-sm mt-1">The operating system for India's small businesses.</p>
+                <p class="text-sm mt-1">Websites for small businesses, built on WhatsApp.</p>
             </div>
             <div class="flex items-center gap-6 text-sm">
                 <a href="pilot.html" class="hover:text-white transition-colors">Pilot Offer</a>
                 <a href="https://hcode.tech" target="_blank" class="hover:text-white transition-colors">HCode Technologies</a>
-                <span class="text-gray-600">&</span>
+                <span class="text-gray-600">&amp;</span>
                 <a href="https://paytunes.in" target="_blank" class="hover:text-white transition-colors">PayTunes</a>
             </div>
         </div>
     </footer>
 
-    <script>
-        // Scroll animation
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
-    </script>
 </body>
 </html>
