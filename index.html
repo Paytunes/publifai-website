@@ -111,7 +111,13 @@
                         See a free audit
                     </a>
                 </div>
-                <p class="text-sm text-gray-500 mt-6">Piloting now with our first businesses across Delhi NCR &amp; Rajasthan.</p>
+                <div class="flex items-center justify-center lg:justify-start gap-2 mt-6">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                    </span>
+                    <span class="text-sm text-gray-500">Live · Piloting now in Delhi NCR &amp; Rajasthan</span>
+                </div>
             </div>
 
             <!-- Phone mockup -->
@@ -164,7 +170,7 @@
                                 <div class="flex justify-start">
                                     <div class="bg-white rounded-lg rounded-tl-none px-3 py-2 max-w-[85%] shadow-sm">
                                         Done in 2 hours. Live hai 🚀
-                                        <div class="text-[9px] text-gray-500 text-right mt-1">2:16 PM</div>
+                                        <div class="text-[9px] text-gray-500 text-right mt-1">4:10 PM</div>
                                     </div>
                                 </div>
                             </div>
@@ -292,7 +298,7 @@
     </section>
 
     <!-- Section 5b — Free audit + sample reports -->
-    <section id="audits" class="py-16 md:py-24 px-5 bg-gradient-to-b from-white to-gray-50/50">
+    <section id="audits" class="py-16 md:py-24 px-5 bg-green-50/40">
         <div class="max-w-5xl mx-auto">
             <div class="text-center mb-12">
                 <div class="inline-block bg-green-50 text-brand text-xs font-semibold tracking-wide uppercase px-4 py-1.5 rounded-full mb-4">
@@ -342,37 +348,94 @@
     <section id="faq" class="py-16 md:py-24 px-5 bg-gray-50/50">
         <div class="max-w-3xl mx-auto">
             <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">The questions everyone asks us first.</h2>
-            <div class="space-y-8">
-                <div>
-                    <h3 class="font-bold text-lg mb-2">1. What if YOU disappear like my last guy?</h3>
-                    <p class="text-gray-600 leading-relaxed">We're a registered company (HCode Technologies + PublifyX Tech). Your domain is in your name from day one, which means even if we stopped operating, you keep your website and your customers keep finding you. We'll give you the files. No hostage.</p>
+            <div class="space-y-2">
+
+                <div class="faq-item bg-white border border-gray-100 rounded-2xl overflow-hidden">
+                    <button class="faq-trigger w-full text-left px-6 py-5 flex items-center justify-between gap-4 hover:text-brand transition-colors">
+                        <span class="font-bold text-base">What if YOU disappear like my last guy?</span>
+                        <svg class="faq-chevron w-5 h-5 text-gray-400 shrink-0 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-5">
+                        <p class="text-gray-600 leading-relaxed">We're a registered company (HCode Technologies + PublifyX Tech). Your domain is in your name from day one, which means even if we stopped operating, you keep your website and your customers keep finding you. We'll give you the files. No hostage.</p>
+                    </div>
                 </div>
-                <div>
-                    <h3 class="font-bold text-lg mb-2">2. I already have a website. Can you just update that one?</h3>
-                    <p class="text-gray-600 leading-relaxed">Sometimes yes, sometimes no. Send us the link — we'll look at it and tell you honestly. Often it's faster to rebuild than to rescue a site built on a platform we can't access.</p>
+
+                <div class="faq-item bg-white border border-gray-100 rounded-2xl overflow-hidden">
+                    <button class="faq-trigger w-full text-left px-6 py-5 flex items-center justify-between gap-4 hover:text-brand transition-colors">
+                        <span class="font-bold text-base">I already have a website. Can you just update that one?</span>
+                        <svg class="faq-chevron w-5 h-5 text-gray-400 shrink-0 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-5">
+                        <p class="text-gray-600 leading-relaxed">Sometimes yes, sometimes no. Send us the link — we'll look at it and tell you honestly. Often it's faster to rebuild than to rescue a site built on a platform we can't access.</p>
+                    </div>
                 </div>
-                <div>
-                    <h3 class="font-bold text-lg mb-2">3. My old agency is holding my domain. Can you get it back?</h3>
-                    <p class="text-gray-600 leading-relaxed">Usually, yes. We've done it before. We'll write them the right email in the right tone and walk you through the transfer. No extra charge for this.</p>
+
+                <div class="faq-item bg-white border border-gray-100 rounded-2xl overflow-hidden">
+                    <button class="faq-trigger w-full text-left px-6 py-5 flex items-center justify-between gap-4 hover:text-brand transition-colors">
+                        <span class="font-bold text-base">My old agency is holding my domain. Can you get it back?</span>
+                        <svg class="faq-chevron w-5 h-5 text-gray-400 shrink-0 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-5">
+                        <p class="text-gray-600 leading-relaxed">Usually, yes. We've done it before. We'll write them the right email in the right tone and walk you through the transfer. No extra charge for this.</p>
+                    </div>
                 </div>
-                <div>
-                    <h3 class="font-bold text-lg mb-2">4. How much?</h3>
-                    <p class="text-gray-600 leading-relaxed">Pilot price: ₹4,999 one-time + ₹499/month for updates and hosting. That's for the first 20 customers. Regular price after that is ₹12,000 + ₹1,200/month. Everything included. No "SEO package" or "maintenance plan" add-ons.</p>
+
+                <div class="faq-item bg-white border border-gray-100 rounded-2xl overflow-hidden">
+                    <button class="faq-trigger w-full text-left px-6 py-5 flex items-center justify-between gap-4 hover:text-brand transition-colors">
+                        <span class="font-bold text-base">How much?</span>
+                        <svg class="faq-chevron w-5 h-5 text-gray-400 shrink-0 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-5">
+                        <p class="text-gray-600 leading-relaxed">Pilot price: ₹9,999/year — that covers setup, hosting, domain, and all updates for 12 months. Regular price after the pilot is ₹26,400/year. Everything included. No "SEO package" or "maintenance plan" add-ons.</p>
+                    </div>
                 </div>
-                <div>
-                    <h3 class="font-bold text-lg mb-2">5. Will I actually show up on Google? What about ChatGPT?</h3>
-                    <p class="text-gray-600 leading-relaxed">Yes — that's the part most freelancers skip. Every Publifai site ships with the right page titles, meta descriptions, structured data (the labels Google and AI crawlers actually look for), an <code class="text-sm bg-gray-100 px-1.5 py-0.5 rounded">llms.txt</code> file, a Google Business Profile properly linked, and Open Graph tags so WhatsApp link previews work. We tell you exactly what to expect — no fake "SEO guarantees."</p>
+
+                <div class="faq-item bg-white border border-gray-100 rounded-2xl overflow-hidden">
+                    <button class="faq-trigger w-full text-left px-6 py-5 flex items-center justify-between gap-4 hover:text-brand transition-colors">
+                        <span class="font-bold text-base">Will I actually show up on Google? What about ChatGPT?</span>
+                        <svg class="faq-chevron w-5 h-5 text-gray-400 shrink-0 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-5">
+                        <p class="text-gray-600 leading-relaxed">Yes — that's the part most freelancers skip. Every Publifai site ships with the right page titles, meta descriptions, structured data (the labels Google and AI crawlers actually look for), an <code class="text-sm bg-gray-100 px-1.5 py-0.5 rounded">llms.txt</code> file, a Google Business Profile properly linked, and Open Graph tags so WhatsApp link previews work. We tell you exactly what to expect — no fake "SEO guarantees."</p>
+                    </div>
                 </div>
-                <div>
-                    <h3 class="font-bold text-lg mb-2">6. Will you raise the price next year?</h3>
-                    <p class="text-gray-600 leading-relaxed">Your ₹499/month is locked. We might change prices for new customers — you keep what you signed up for.</p>
+
+                <div class="faq-item bg-white border border-gray-100 rounded-2xl overflow-hidden">
+                    <button class="faq-trigger w-full text-left px-6 py-5 flex items-center justify-between gap-4 hover:text-brand transition-colors">
+                        <span class="font-bold text-base">Will you raise the price next year?</span>
+                        <svg class="faq-chevron w-5 h-5 text-gray-400 shrink-0 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-5">
+                        <p class="text-gray-600 leading-relaxed">Your pilot price is locked. We might change prices for new customers — you keep what you signed up for.</p>
+                    </div>
                 </div>
+
             </div>
         </div>
     </section>
+    <script>
+        document.querySelectorAll('.faq-trigger').forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                const item = trigger.closest('.faq-item');
+                const answer = item.querySelector('.faq-answer');
+                const chevron = item.querySelector('.faq-chevron');
+                const isOpen = !answer.classList.contains('hidden');
+                // Close all
+                document.querySelectorAll('.faq-item').forEach(i => {
+                    i.querySelector('.faq-answer').classList.add('hidden');
+                    i.querySelector('.faq-chevron').classList.remove('rotate-180');
+                });
+                // Open clicked if it was closed
+                if (!isOpen) {
+                    answer.classList.remove('hidden');
+                    chevron.classList.add('rotate-180');
+                }
+            });
+        });
+    </script>
 
     <!-- Section — Team -->
-    <section class="py-16 md:py-24 px-5 bg-white">
+    <section class="py-16 md:py-24 px-5 bg-gray-50/50">
         <div class="max-w-3xl mx-auto">
             <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-bold mb-4">Built by people who get it.</h2>
@@ -380,7 +443,7 @@
             </div>
             <div class="grid sm:grid-cols-2 gap-6">
                 <!-- Shashank -->
-                <div class="bg-gray-50 border border-gray-100 rounded-2xl p-8 flex flex-col items-center text-center">
+                <div class="bg-gray-50 border border-gray-100 rounded-2xl p-8 flex flex-col items-center text-center hover:-translate-y-1 hover:shadow-md hover:border-brand/20 transition-all duration-200">
                     <img src="assets/hcode-shashank-singla.jpg" alt="Shashank Singla" class="w-28 h-28 rounded-full object-cover mb-4 ring-2 ring-brand/10" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
                     <div class="w-28 h-28 rounded-full bg-green-50 items-center justify-center text-brand text-2xl font-bold mb-4 ring-2 ring-brand/10" style="display:none">S</div>
                     <h3 class="font-bold text-lg mb-1">Shashank Singla</h3>
@@ -391,7 +454,7 @@
                     </a>
                 </div>
                 <!-- Gaurav -->
-                <div class="bg-gray-50 border border-gray-100 rounded-2xl p-8 flex flex-col items-center text-center">
+                <div class="bg-gray-50 border border-gray-100 rounded-2xl p-8 flex flex-col items-center text-center hover:-translate-y-1 hover:shadow-md hover:border-brand/20 transition-all duration-200">
                     <img src="assets/Gaurav.webp" alt="Gaurav Tiwari" class="w-28 h-28 rounded-full object-cover mb-4 ring-2 ring-brand/10" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
                     <div class="w-28 h-28 rounded-full bg-green-50 items-center justify-center text-brand text-2xl font-bold mb-4 ring-2 ring-brand/10" style="display:none">G</div>
                     <h3 class="font-bold text-lg mb-1">Gaurav Tiwari</h3>
