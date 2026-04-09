@@ -35,6 +35,13 @@
     <script>
         // Geo-based pricing: detect if visitor is outside India
         async function detectCountryAndSetPricing() {
+            // Check for ?origin= query parameter first — skips the ipapi.co call entirely
+            const origin = new URLSearchParams(window.location.search).get('origin');
+            if (origin !== null) {
+                if (origin.toLowerCase() !== 'in') applyInternationalPricing();
+                return;
+            }
+            // No origin param — fall back to IP-based detection
             try {
                 const resp = await fetch('https://ipapi.co/country/', { signal: AbortSignal.timeout(3000) });
                 const country = (await resp.text()).trim();
