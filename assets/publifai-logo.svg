@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 48">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&amp;display=swap');
   </style>
   <text font-family="'DM Sans', sans-serif" font-weight="700" font-size="40" letter-spacing="-0.5" y="37">
     <tspan fill="#1a6b4a">Publif</tspan><tspan fill="#2d9d6a">ai</tspan>
