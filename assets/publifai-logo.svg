@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 48">
   <style>
-    @import url('https://fonts.bunny.net/css?family=cabinet-grotesk:800');
-    .wm { font-family: 'Cabinet Grotesk', sans-serif; font-weight: 800; font-size: 40px; letter-spacing: -0.5px; }
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&display=swap');
   </style>
-  <text class="wm" x="4" y="37" fill="#1a6b4a">Publif</text>
-  <text class="wm" x="138" y="37" fill="#2d9d6a">ai</text>
+  <text font-family="'DM Sans', sans-serif" font-weight="700" font-size="40" letter-spacing="-0.5" y="37">
+    <tspan fill="#1a6b4a">Publif</tspan><tspan fill="#2d9d6a">ai</tspan>
+  </text>
 </svg>
